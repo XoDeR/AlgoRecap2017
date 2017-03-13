@@ -1,0 +1,35 @@
+Given an undirected or a directed graph, implement the graph without using any data structure provided by any programming language library (e.g. STL in C++ or Collections in Java, etc). Implement for both weighted and unweighted graphs.
+
+
+Prerequisite: Terminology and Representations of Graphs
+ 
+
+In this post we will implement graph using its Adjacency List representation without using any container provided by standard library.
+As we already know that adjacency list associates each vertex in the graph with the collection of its neighboring vertices or edges i.e every vertex stores a list of adjacent vertices. There are many variations of adjacency list representation depending upon the implementation. 
+For example, for above graph below is its Adjacency List pictorial representation –
+
+Above representation allows the storage of additional data on the vertices but practically very efficient when the graph contains only few edges.
+
+Non-STL implementation of an Unweighted Graph–
+
+Output: 
+
+0 –> 1
+1 –> 2
+2 –> 1 0
+3 –> 2
+4 –> 5
+5 –> 4
+
+Non-STL implementation of a Weighted Graph–
+
+  
+
+Output: 
+
+(0, 1, 6)
+(1, 2, 7)
+(2, 1, 4) (2, 0, 5)
+(3, 2, 10)
+(4, 5, 1)
+(5, 4, 3)
