@@ -1,0 +1,68 @@
+Print all Possible Knight’s Tours in a chessboard
+Given a chess board, print all sequences of moves of a knight on a chessboard such that the knight visits every square only once.
+
+
+ 
+For example, for standard 8 × 8 chessboard below is one such tour. We have started the tour from top-leftmost of the board (marked as 1) and consecutive moves of the knight are represented by the next number.
+
+ 1 50 45 62 31 18  9 64
+46 61 32 49 10 63 30 17
+51  2 47 44 33 28 19  8
+60 35 42 27 48 11 16 29
+41 52  3 34 43 24  7 20
+36 59 38 55 26 21 12 15
+53 40 57  4 23 14 25  6
+58 37 54 39 56  5 22 13
+
+The Knight should search for a path from the starting position until it visits every square or until it exhausts all possibilities. We can easily achieve this with the help of backtracking. We start from given source square in the chessboard and recursively explore all eight paths possible to check if they leads to the solution or not. If current path doesn’t reach destination or we have explored all possible routes from the current square, we backtrack. To make sure that the path is simple and doesn’t contain any cycles, we keep track of squares involved in current path in an chessboard and before exploring any square, we ignore the square if it is already covered in current path.
+
+We know that a knight can move in 8 possible directions from a given square as illustrated in below figure-
+
+We can find all the possible locations the Knight can move to from the given location by using the array that stores the relative position of Knight movement from any location. For example, if the current location is (x, y), we can move to (x + row[k], y + col[k]) for 0 <= k <=7 using below array. 
+row[] = [ 2, 1, -1, -2, -2, -1, 1, 2, 2 ]
+col[] = [ 1, 2, 2, 1, -1, -2, -2, -1, 1 ]
+
+So, from a position (x, y) in the chessboard, the valid moves are:
+
+
+(x + 2, y + 1)
+(x + 1, y + 2)
+(x – 1, y + 2)
+(x – 2, y + 1)
+(x – 2, y – 1)
+(x – 1, y – 2)
+(x + 1, y – 2)
+(x + 2, y – 1)
+
+Important Note – Please avoid changing sequence of above arrays. The order in which the Knight will move is circular and will be optimum. Using above order, we will get to a vacant position in few moves. Also, it is always better to start backtracking from any corner of chessboard. If we start from somewhere middle, the Knight can go to 8 different directions. If we start from corner, the knight can go to only two points from there. Since the algorithm is exponential, optimized input to it can make huge difference.
+
+Output: 
+
+1 6 15 10 21
+14 9 20 5 16
+19 2 7 22 11
+8 13 24 17 4
+25 18 3 12 23
+
+1 6 11 18 21
+12 17 20 5 10
+7 2 15 22 19
+16 13 24 9 4
+25 8 3 14 23
+
+1 6 11 16 21
+12 15 20 5 10
+7 2 13 22 17
+14 19 24 9 4
+25 8 3 18 23
+
+1 6 17 12 21
+16 11 20 5 18
+7 2 9 22 13
+10 15 24 19 4
+25 8 3 14 23
+
+.. and 300 other knight’s tour
+
+ 
+The above backtracking solution for a knight’s tour is impractical on larger boards. For larger values of N, it is well beyond the capacity of modern computers (or networks of computers) to perform operations on such a large set.

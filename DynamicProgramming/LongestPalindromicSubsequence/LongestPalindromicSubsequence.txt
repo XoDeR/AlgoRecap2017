@@ -1,0 +1,65 @@
+Longest Palindromic Subsequence using Dynamic Programming
+The Longest Palindromic Subsequence (LPS) problem is the problem of finding the longest subsequences of a string that is also a palindrome.
+
+
+The problem differs from problem of finding common substrings. Unlike substrings, subsequences are not required to occupy consecutive positions within the original sequences.
+ 
+For example, Consider the sequence ABBDCACB
+
+
+The length of Longest Palindromic Subsequence is 5
+The Longest Palindromic Subsequence is BCACB
+
+The idea is to use recursion to solve this problem. The idea is compare the last character of the string X[i..j] with its first character. There are two possibilities –
+ 
+
+1. If the last character of the string is same as the first character, we include first and last characters in palindrome and recuse for the remaining substring X[i+1, j-1]
+ 
+2. If last character of string is different from the first character, we return maximum of the two values we get by
+
+removing the last character and recursing for the remaining substring X[i, j-1]
+removing the first character and recursing for the remaining substring X[i+1, j]
+This yields the below recursive relation to find the length of longest repeated Subsequence of a sequence X.
+
+
+            | 1                                      (if i = j)
+LPS[i..j] = | LPS[i+1..j-1] + 2                      (if X[i] = X[j])
+            | max (LPS[i+1..j], LPS[i..j-1])         (if X[i] != X[j])
+
+Below solution finds the length of longest repeated Subsequence of sequence X recursively by using above relations.
+
+Output: 
+
+The length of Longest Palindromic Subsequence is 5
+
+ 
+The worst case time complexity of above solution is exponential O(2n) and auxiliary space used by the program is O(1). The worst case happens when there is no repeated character present in X (i.e. LPS length is 1) and each recursive call will end up in two recursive calls.
+ 
+
+ 
+The LPS problem has an optimal substructure. We have seen that the problem can be broken down into smaller subproblems which can further be broken down into yet smaller subproblems, and so on. The LPS problem also exhibits overlapping subproblems we will end up solving the same subproblem over and over again. Let us consider recursion tree for sequence of length 6 having all distinct characters (say ABCDEF) whose LPS length is 1.
+
+  lps-problem
+
+As we can see, the same sub-problems (highlighted in same color) are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which subproblem solutions are Memoized rather than computed again and again. This method is illustrated below –
+
+
+Output: 
+
+The length of Longest Palindromic Subsequence is 5
+
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n2).
+ 
+
+Above solutions only find the length of Longest Palindromic Subsequence but do not print the Longest Palindromic Subsequence itself.
+
+How can we print Longest Palindromic Subsequence?
+
+The Longest Palindromic Subsequence problem is classic variation of Longest Common Subsequence (LCS) problem. The idea is to find LCS of given string with its reverse i.e. call LCS(X, reverse(X)) and the Longest Common Subsequence will be Longest Palindromic Subsequence.
+
+Output: 
+
+The length of Longest Palindromic Subsequence is 5
+The Longest Palindromic Subsequence is BCACB
+
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n2).

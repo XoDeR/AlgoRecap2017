@@ -1,0 +1,81 @@
+Increasing Subsequence with Maximum Sum
+Find a subsequence of a given sequence such that subsequence sum is as high as possible and subsequence’s elements are in sorted order, from lowest to highest. This subsequence is not necessarily contiguous, or unique.
+
+
+ 
+For example, consider below subsequence
+[0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11]
+
+Maximum sum increasing subsequence is [8 12 14]
+This subsequence has sum 34
+
+ 
+
+ 
+The Maximum sum increasing subsequence (MSIS) problem is a standard variation of Longest Increasing Subsequence problem.
+
+The idea is to use recursion to solve this problem. For each item, there are two possibilities –
+ 
+
+1. We include current item in MSIS if it is greater than the previous element in MSIS and recurse for remaining items.
+ 
+2. We exclude current item from MSIS and recurse for remaining items.
+ 
+Finally, we return maximum sum we get by including or excluding current item. The base case of the recursion would be when no items are left.
+
+Output: 
+
+Maximum sum of increasing subsequence is 34
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+
+ 
+
+ 
+The problem has an optimal substructure. That means the problem can be broken down into smaller, simple “subproblems”, which can further be divided into yet simpler, smaller subproblems until the solution becomes trivial. Above solution also exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using Dynamic Programming, in which subproblem solutions are Memoized rather than computed again and again. The Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values.
+
+We can also solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The following bottom-up approach computes sum[i], for each 0 <= i < n, which stores the maximum sum of an increasing subsequence of subarray arr[0..i] that ends with arr[i]. To calculate sum[i], we consider MSIS of all smaller values of i (say j) already computed and pick the maximum sum[j] where arr[j] is less than the current element arr[i] and add current element arr[i] to it. It has the same asymptotic run-time as Memoization but no recursion overhead.
+
+Output: 
+
+Maximum sum of increasing subsequence is 34
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n).
+
+ 
+
+ 
+How to print MSIS?
+
+Above solutions only print the sum of MSIS but do not actually print MSIS itself. To print the MSIS, we actually have to store the maximum sum increasing subsequence in lookup table along with storing maximum sum.
+
+For example, consider
+
+arr = [ 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11]
+
+ 
+The Maximum sum Increasing Subsequence MSIS[i] of subarray arr[0..i] that ends with arr[i] are –
+
+
+MSIS[0] – 8
+MSIS[1] – 4
+MSIS[2] – 8 12
+MSIS[3] – 2
+MSIS[4] – 8 10
+MSIS[5] – 4 6
+MSIS[6] – 8 12 14
+MSIS[7] – 1
+MSIS[8] – 4 6 9
+MSIS[9] – 4 5
+MSIS[10] – 8 12 13
+MSIS[11] – 2 3
+MSIS[12] – 4 6 9 11
+
+Output: 
+
+8 12 14
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n2).

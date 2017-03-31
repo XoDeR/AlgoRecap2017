@@ -1,0 +1,19 @@
+Find Longest Possible Route in a Matrix
+Given a rectangular path in the form of binary matrix, find the length of longest possible route from source to destination position of the matrix by moving to only non-zero adjacent positions i.e. route can be formed from positions having their value as 1. Note there should not be any cycles in the output path.
+
+
+ 
+For example, longest path from given source cell (1, 7) to destination cell (5, 7) for below matrix is of length 22.
+
+(0, 0) -> (1, 0) -> (2, 0) -> (2, 1) -> (2, 2) -> (1, 2) -> (0, 2) ->
+(0, 3) -> (0, 4) -> (1, 4) -> (1, 5) -> (2, 5) -> (2, 4) -> (3, 4) ->
+(4, 4) -> (5, 4) -> (5, 5) -> (5, 6) -> (4, 6) -> (4, 7) -> (4, 8) ->
+(5, 8)
+
+  Find Longest Possible Route in a Matrix
+
+We can use Backtracking to solve this problem. We start from given source cell in the matrix and explore all four paths possible and recursively check if they will leads to the destination or not. We have to keep track of current distance of a cell from the source. We update the value of longest path found so far whenever destination cell is reached. If a path doesn’t reach destination or we have explored all possible routes from the current cell, we backtrack. To make sure that the path is simple and doesn’t contain any cycles, we keep track of cells involved in current path in an matrix and before exploring any cell, we ignore the cell if it is already covered in current path.
+
+Output: 
+
+Maximum length path is 22

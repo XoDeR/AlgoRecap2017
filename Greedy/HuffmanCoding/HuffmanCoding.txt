@@ -1,0 +1,126 @@
+Huffman Coding
+Huffman Coding is a algorithm for doing data compression and it forms the basic idea behind file compression. This post talks about fixed length and variable length encoding, uniquely decodable codes, prefix rules and construction of Huffman Tree.
+
+ 
+
+
+We already know that every character is stored in sequences of 0’s and 1’s using 8 bits. This is called fixed-length encoding as each character uses the same number of fixed bits storage.
+ 
+
+Given a text, how can we reduce the amount of space required to store a character?
+
+ 
+The idea is to use variable-length encoding. We can exploit the fact that some characters occurs more frequently than others in a text (refer this) to design an algorithm which can represent the same piece of text using lesser number of bits. In variable-length encoding, we assign variable number of bits to characters depending upon their frequency in the given text. So, some character might end up taking 1 bit, some might end up taking two bits, some will be encoded using three bits, and so on. The problem with variable length encoding lies in its decoding.
+ 
+
+Given a sequence of bits, how can we decode it uniquely?
+
+ 
+Lets consider the string “aabacdab”. It has 8 characters in it and uses 64 bits storage (using fixed-length encoding). If we note, the frequency of characters ‘a’, ‘b’, ‘c’ and ‘d’ are 4, 2, 1, 1 respectively. Lets try to represent “aabacdab” using lesser number of bits by using the fact that ‘a’ occurs more frequently  than ‘b’ and ‘b’ occurs more frequently than ‘c’ and ‘d’. We start by randomly assigning single bit code 0 to ‘a’,  2-bit code 11 to ‘b’ and 3-bit code 100 and 011 to characters ‘c’ and ‘d’ respectively.
+
+a 0
+b 11
+c 100
+d 011
+ 
+So the string aabacdab will be encoded to 00110100011011 (0|0|11|0|100|011|0|11) using above codes. But the real problem lies in decoding. If we try to decode the string 00110100011011, it will lead to ambiguity as it can be decoded to,
+
+0|011|0|100|011|0|11    adacdab
+0|0|11|0|100|0|11|011   aabacabd
+0|011|0|100|0|11|0|11   adacabab
+..
+and so on
+ 
+To prevent ambiguities in decoding, we will ensure that our encoding satisfies what’s called the prefix rule which will result into uniquely decodable codes. The prefix rule states that no code is a prefix of another code. By code, we mean the bits used for a particular character. In above example, 0 is prefix of 011 which violates the prefix rule. So if our codes satisfies the prefix rule, the decoding will be unambiguous (and vice versa).
+
+Lets consider above example again. This time we assign codes that satisfies the prefix rule to characters ‘a’, ‘b’, ‘c’ and ‘d’.
+
+a   0
+b   10
+c   110
+d   111
+ 
+Using above codes, the string aabacdab will be encoded to 00100100011010 (0|0|10|0|100|011|0|10). Now we can uniquely decode 00100100011010 back to our original string aabacdab.
+
+ 
+
+Huffman coding –
+
+ 
+Now that we are clear on variable length encoding and prefix rule, let’s talk about Huffman coding.
+
+The technique works by creating a binary tree of nodes. A node can be either a leaf node or an internal node. Initially, all nodes are leaf nodes, which contain the character itself, the weight (frequency of appearance) of the character. Internal nodes contain character weight and links to two child nodes. As a common convention, bit ‘0’ represents following the left child and bit ‘1’ represents following the right child. A finished tree has n leaf nodes and n-1 internal nodes. It is recommended that Huffman tree should discard unused characters in the text to produce the most optimal code lengths.
+ 
+
+We will use priority queue for building Huffman tree where the node with lowest frequency is given highest priority. Below are the complete steps –
+
+1. Create a leaf node for each character and add them to the priority queue.
+2. While there is more than one node in the queue:
+
+   a. Remove the two nodes of highest priority (lowest frequency) from the queue
+
+   b. Create a new internal node with these two nodes as children and with
+      frequency equal to the sum of the two nodes’ frequencies.
+
+   c. Add the new node to the priority queue.
+
+3. The remaining node is the root node and the tree is complete.
+
+ 
+Consider some text consisting of only ‘A’, ‘B’, ‘C’, ‘D’ and ‘E’ character and their frequencies are 15, 7, 6, 6, 5 respectively. Below figures illustrate the steps followed by the algorithm –
+ 
+
+huffman-coding-1
+
+huffman-coding-2
+
+huffman-coding-3
+
+huffman-coding-4
+
+huffman-coding-5
+
+The path from root to any leaf node stores the optimal prefix code (also called Huffman code) corresponding to character associated with that leaf node.
+
+huffman-coding-6
+Huffman Tree
+
+Output: 
+
+Huffman Codes are :
+
+h 111110
+f 11110
+i 1110
+t 11011
+l 110100
+o 1100
+n 1011
+r 10101
+d 0010
+g 0001
+H 00001
+u 00000
+c 0011
+a 010
+e 110101
+  011
+m 1000
+. 111111
+s 1001
+p 10100
+
+Original string was :
+Huffman coding is a data compression algorithm.
+
+Encoded string is :
+00001000001111011110100001010110110011110000101110101100010111110100101101001100100101101101001100111100100010100101011101011001100111101100101101101011010000011100101011110110111111101000111111
+
+Decoded string is:
+Huffman coding is a data compression algorithm.
+
+ 
+
+Note – The storage used by the input string is 47*8 = 376 bits but our encoded string only takes 194 bits. i.e. about 48% data compression. To make program readable, we’re using C++ string class to store the encoded string in above program.
+
+Since efficient priority queue data structures require O(log(n)) time per insertion, and a complete binary tree with n leaves has 2n-1 nodes and huffman coding tree is a complete binary tree, this algorithm operates in O(nlog(n)) time, where n is the number of characters.

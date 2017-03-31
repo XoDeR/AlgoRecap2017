@@ -28,8 +28,5 @@ Time complexity of above solution is O(nlogn).
 
 Weighted Activity Selection Problem –
 
-Weighted Activity Selection Problem is the generalized version of the activity selection problem that involves selecting an optimal set of non-overlapping activities such that the total weight is maximized. Unlike the unweighted version, there is no greedy solution to the weighted activity selection problem. We will soon discuss a dynamic programming solution to this problem.
+Weighted Activity Selection Problem is the generalized version of the activity selection problem that involves selecting an optimal set of non-overlapping activities such that the total weight is maximized. Unlike the unweighted version, there is no greedy solution to the weighted activity selection problem.
 
-References:
-https://en.wikipedia.org/wiki/Activity_selection_problem
-http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Greedy/actSelectionGreedy.htm

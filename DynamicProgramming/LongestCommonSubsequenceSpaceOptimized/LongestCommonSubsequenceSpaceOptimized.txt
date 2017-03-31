@@ -1,0 +1,44 @@
+Longest Common Subsequence | Space optimized version
+Write space optimized version of LCS problem.
+
+
+We have discussed an iterative DP version of LCS problem here that uses O(mn) space where m and n are length of given strings X and Y respectively. If only the length of the LCS is required, the space complexity of the solution can be improved up to O(min(m, n)) as we’re reading only from previous row of current row.
+ 
+
+ 
+Approach 1: (Using two arrays)
+
+Output: 
+
+The length of LCS is 4
+
+ 
+
+The time complexity of above solution is O(mn) and auxiliary space used by the program is 2n where n is the length of second string. The solution does not depend on the length of the first string. If length of second string is much larger than the length of first string, then the space complexity would be huge. We can optimize the space complexity to min(m, n) by creating a wrapper that always passes smaller string as second argument to the LCSLength function.
+ 
+// main function
+int main()
+{
+    string X = "XMJYAUZ", Y = "MZJAWXU";
+ 
+    // pass smaller string as second argument to LCSLength()     
+    if (X.length() > Y.length())
+        cout << "The length of LCS is " << LCSLength(X, Y);
+    else
+        cout << "The length of LCS is " << LCSLength(Y, X);
+ 
+    return 0;
+}
+ 
+ 
+
+The auxiliary space used by the program now is 2 x min(m, n).
+ 
+
+ 
+Approach 2: (Using one array)
+Above solution uses two arrays. Code can further be optimized to use only one array and a temporary variable.
+
+Output: 
+
+The length of LCS is 4

@@ -1,0 +1,70 @@
+Longest Repeated Subsequence problem
+The longest repeated subsequence (LRS) problem is the problem of finding the longest subsequences of a string that occurs at least twice.
+
+
+The problem differs from problem of finding common substrings. Unlike substrings, subsequences are not required to occupy consecutive positions within the original sequences.
+ 
+For example, consider the sequence ATACTCGGA
+
+
+Length of Longest Repeating Subsequence is 4
+Longest Repeating Subsequence is ATCG
+
+A T A C T C G G A
+A T A C T C G G A
+
+Note that repeated characters holds different index in the input string.
+
+The Longest Repeating Subsequence problem is classic variation of Longest Common Subsequence (LCS) problem. The idea is to find LCS of given string with itself i.e. call LCS(X, X) and excluding the cases when index are same (i = j) as repeated characters holds different index in the input string.
+
+The LRS problem has an optimal substructure. That means the problem can be broken down into smaller, simple “subproblems”, which can be broken down into yet simpler subproblems, and so on, until, finally, the solution becomes trivial. The problem can be recursively defined as –
+
+
+            | 0                                      (if i = 0 or j = 0)
+LRS[i][j] = | LRS[i-1][j-1] + 1                      (if X[i-1] = X[j-1] & i!=j)
+            | min (LRS[i-1][j] + 1, LRS[i][j-1] + 1) (if X[i-1] != X[j-1])
+
+ 
+
+Below solution finds the length of longest repeated Subsequence of sequence X recursively by using optimal substructure property of LRS problem.
+
+Output: 
+
+Length of Longest Repeating Subsequence is 4
+
+ 
+The worst case time complexity of above solution is O(2n) and auxiliary space used by the program is O(1). The worst case happens when there is no repeated character present in X (i.e. LRS length is 0) and each recursive call will end up in two recursive calls.
+ 
+
+ 
+The LRS problem exhibits overlapping subproblems. A problem is said to have overlapping subproblems if the recursive algorithm for the problem solves the same subproblem over and over rather than always generating new subproblems.
+
+Let us consider recursion tree for sequence of length 5 having all distinct characters whose LRS length is 0.
+
+lrs
+
+As we can see, the same sub-problems (highlighted in same color) are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which subproblem solutions are memoized rather than computed again and again. This method is illustrated below –
+
+
+Output: 
+
+Length of Longest Repeating Subsequence is 4
+
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n2).
+ 
+
+Above Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values. We can also solve this problem in bottom-up manner. In the bottom-up approach, we calculate the smaller values of LRS(i, j) first, then build larger values from them.
+
+Output: 
+
+Length of Longest Repeating Subsequence is 4
+
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n2). The space complexity of above solution can be improved to O(n) as calculating LRS of a row of the LRS table requires only the solutions to the current row and the previous row.
+
+How to extend above solution for printing Longest Repeating Subsequence?
+
+The idea is very similar to printing Longest Common Subsequence of two strings. Refer this post for details.
+
+Output: 
+
+The Longest Repeating Subsequence is ATCG

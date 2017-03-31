@@ -1,0 +1,83 @@
+Shortest Common Supersequence using LCS
+The shortest common supersequence (SCS) is the problem of finding the shortest supersequence Z of given sequences X and Y such that both X and Y are subsequences of Z.
+
+
+For example,
+
+Consider the two following sequences X and Y
+X: ABCBDAB
+Y: BDCABA
+
+The length of SCS is 9
+SCS are ABCBDCABA, ABDCABDAB and ABDCBDABA
+
+ 
+
+ 
+1. Finding Length of Shortest Common Supersequence –
+ 
+
+The shortest common supersequence problem is closely related to the longest common subsequence problem. The length of shortest common supersequence of two subsequences can be easily derived from the length of their longest common subsequence. For give two sequences X and Y of length m and n respectively, the relation is –
+ 
+
+SCSLength(X, Y) = m + n – LCSLength(X, Y)
+ 
+
+The relation works as LCS detects common characters present in the string and in order for a common supersequence to be of minimal length, the common characters should be present in it only once. So the length of SCS is equal to the sum of both strings minus length of their LCS.
+
+Output: 
+
+The Length of Shortest Common Supersequence is 9
+
+ 
+
+ 
+2. Finding a Shortest Common Supersequence –
+
+ 
+For two input sequences, an SCS can be easily formed from a longest common subsequence (LCS). The idea construct an SCS by considering the non-lcs characters while preserving the character order.
+
+For example, consider two sequences abcbdab and bdcaba having LCS equal to bcba. By inserting the non-lcs characters and preserving the character order, we get string abdcabdab which is our SCS.
+
+How to achieve this?
+
+The idea is to fill lookup table of LCS by finding the length of LCS of given sequence X[0..m-1] and Y[0..n-1] in bottom-up manner. Then we recursively find the SCS in top-down manner using values in the lookup table i.e. we follow the path from the bottom right corner of lookup table to its top left corner when reading out an SCS.
+
+If the current characters of X and Y are equal, then they are part of the SCS and we move diagonally in the lookup table (i.e. we recurse to find SCS of sequence X[0..m-2], Y[0..n-2]).
+ 
+
+If the current characters of X and Y are different, we go up or left, depending on which cell has a higher number.
+if the top cell of current cell has more value than the left cell, then we include current character of the sequence X in SCS and recurse to find SCS of sequence X[0..m-2], Y[0..n-1]
+if the left cell of current cell has more value than the top cell, then we include current character of the sequence Y in SCS and recurse to find SCS of sequence X[0..m-1], Y[0..n-2]
+ 
+If we have reached the end of either sequence, then the other sequence forms part of the SCS
+
+Output: 
+
+The Shortest Common Supersequence of ABCBDAB and BDCABA is ABCBDCABA
+
+ 
+The time complexity of above solution is O(nm) and auxiliary space used by the program is O(mn).
+ 
+
+ 
+3. Finding All Shortest Common Supersequence –
+ 
+
+The Shortest Common Supersequence for two strings is not unique and above code doesn’t generate all SCS of the given sequences. It will always print one SCS. The problem with the above code is when the last character of X and Y are different, we either go up or left in the lookup table depending upon which side has larger value.
+ 
+
+How can we modify the code so it prints all possible SCS?
+ 
+
+The idea remains the same except if the top cell is equal to the left cell, then we consider both top and left directions else we go in direction of greater value.
+
+In other words, if the last characters of X and Y are not same, then SCS can be constructed from either top side or from the left side of lookup table depending upon which side has larger value. If both the values are equal, then SCS can be constructed from both directions in the lookup table. So we go in direction of larger value or go in both directions if the values are equal.
+
+Output: 
+
+All Shortest Common Supersequence of ABCBDAB and BDCABA are –
+
+ABCBDCABA
+ABDCABDAB
+ABDCBDABA

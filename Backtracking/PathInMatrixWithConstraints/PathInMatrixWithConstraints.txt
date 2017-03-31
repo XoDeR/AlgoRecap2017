@@ -1,0 +1,89 @@
+Find path from source to destination in a matrix that satisfies given constraints
+Given a N x N matrix of positive integers, find a path from the first cell of the matrix to its last cell.
+
+
+We can move exactly k steps from any cell in the matrix where k is the value of that cell. i.e. from any cell M[i][j] in the matrix M, we can move to location
+
+M[i + M[i][j]][j] or M[i – M[i][j]][j] or M[i][j + M[i][j]] or M[i][j – M[i][j]].
+
+Note that we are not allowed to make any diagonal moves.
+
+For example,
+
+Input: 
+
+[ 7  1  3  5  3  6  1  1  7  5 ]
+[ 2  3  6  1  1  6  6  6  1  2 ]
+[ 6  1  7  2  1  4  7  6  6  2 ]
+[ 6  6  7  1  3  3  5  1  3  4 ]
+[ 5  5  6  1  5  4  6  1  7  4 ]
+[ 3  5  5  2  7  5  3  4  3  6 ]
+[ 4  1  4  3  6  4  5  3  2  6 ]
+[ 4  4  1  7  4  3  3  1  4  2 ]
+[ 4  4  5  1  5  2  3  5  3  5 ]
+[ 3  6  3  5  2  2  6  4  2  1 ]
+
+Output: 
+
+(0, 0) (7, 0) (3, 0) (9, 0) (6, 0) (2, 0) (8, 0) (4, 0) (4, 5) (0, 5) (6, 5)
+(2, 5) (2, 1) (1, 1) (4, 1) (9, 1) (3, 1) (3, 7) (2, 7) (8, 7) (8, 2) (3, 2)
+(3, 9) (7, 9) (9, 9)
+
+OR
+
+(0, 0) (7, 0) (3, 0) (9, 0) (6, 0) (2, 0) (8, 0) (4, 0) (4, 5) (8, 5) (6, 5)
+(2, 5) (2, 9) (4, 9) (8, 9) (3, 9) (7, 9) (9, 9)
+
+OR
+
+Any other path possible from source to destination
+
+ 
+Input: 
+
+[ 4  4  6  5  5  1  1  1  7  4 ]
+[ 3  6  2  4  6  5  7  2  6  6 ]
+[ 1  3  6  1  1  1  7  1  4  5 ]
+[ 7  5  6  3  1  3  3  1  1  7 ]
+[ 3  4  6  4  7  2  6  5  4  4 ]
+[ 3  2  5  1  2  5  1  2  3  4 ]
+[ 4  2  2  2  5  2  3  7  7  3 ]
+[ 7  2  4  3  5  2  2  3  6  3 ]
+[ 5  1  4  2  6  4  6  7  3  7 ]
+[ 1  4  1  7  5  3  6  5  3  4 ]
+
+Output: 
+
+(0, 0) (4, 0) (1, 0) (1, 3) (5, 3) (4, 3) (0, 3) (0, 8) (7, 8) (1, 8) (1, 2)
+(3, 2) (9, 2) (8, 2) (4, 2) (4, 8) (8, 8) (5, 8) (2, 8) (6, 8) (6, 1) (4, 1)
+(0, 1) (0, 5) (1, 5) (6, 5) (4, 5) (2, 5) (3, 5) (3, 8) (3, 7) (2, 7) (1, 7)
+(1, 9) (7, 9) (7, 6) (5, 6) (6, 6) (6, 9) (9, 9)
+
+OR
+
+Any other path possible from source to destination
+
+ 
+
+ 
+We can use Backtracking to solve this problem. The idea is to start from the source cell in the matrix and explore all four possible paths and recursively check if they will leads to the solution or not. If a path doesn’t reach destination or we have explored all possible routes from the current cell, we backtrack. To make sure that the path is simple and doesn’t contain any cycles, we keep track of cells involved in current path in an matrix and before exploring any cell, we ignore the cell if it is already covered in current path.
+
+We can find all the possible locations we can move to from the given location by using the array that stores the relative position of movement from any location. For example, if the current location is (x, y), we can move to (x + row[k], y + col[k]) for 0 <= k < 4 using below array –
+
+
+int row[] = { -1, 0, 0, 1 };
+int col[] = { 0, -1, 1, 0 };
+
+So, from position (x, y), we can move to:
+
+(x – 1, y)
+(x, y – 1)
+(x, y + 1)
+(x + 1, y)
+
+Output: 
+
+(0, 0) (0, 7) (0, 6) (0, 5) (6, 5) (2, 5) (2, 1) (1, 1) (1, 4) (0, 4) (0, 1)
+(0, 2) (3, 2) (3, 9) (3, 5) (3, 8) (0, 8) (7, 8) (7, 4) (3, 4) (3, 1) (3, 7)
+(3, 6) (8, 6) (5, 6) (2, 6) (9, 6) (9, 0) (6, 0) (2, 0) (8, 0) (4, 0) (4, 5)
+(4, 1) (9, 1) (9, 7) (5, 7) (1, 7) (7, 7) (7, 6) (7, 9) (9, 9)

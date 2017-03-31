@@ -1,0 +1,47 @@
+Find all Permutations of a given string
+Given a string containing all distinct characters, find all permutations of it.
+
+ 
+
+For example, string ABC has 6 permutations. i.e. ABC, ACB, BAC, BCA, CBA, CAB
+ 
+
+ 
+Approach 1: (Using Backtracking) –
+
+We can in-place find all permutations of a given string by using Backtracking. The idea is to swap each of the remaining characters in the string with its first character and then find all the permutations of the remaining characters using a recursive call. The base case of the recursion is when the string is left with only one unprocessed element. Below is the recursion tree for printing all permutations of string “ABC”.
+
+permutations
+
+Output: 
+
+ABC
+ACB
+BAC
+BCA
+CBA
+CAB
+
+ 
+
+Approach 2: (Using STL) –
+
+We can use std::rotate to in-place rotate a string in linear time and recursively permute on the rotated string. Below is the recursion tree for printing all permutations of string “ABC”.
+
+permutations-stl
+
+Output: 
+
+ABC
+ACB
+BCA
+BAC
+CAB
+CBA
+
+ 
+
+The time complexity of above solutions is O(n.n!) as there are n! permutations for a string of length n and each permutations takes O(n) time.
+ 
+
+Note that above solution doesn’t handle strings containing duplicate characters. 
