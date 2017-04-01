@@ -1,0 +1,53 @@
+Count number of times a pattern appears in given string as a subsequence
+Given a pattern, count number of times the pattern appears in the given string as a subsequence.
+
+
+ 
+
+For example,
+
+Input:
+string = “subsequence”;
+pattern = “sue”;
+
+Output: 7
+
+subsequence
+subsequence
+subsequence
+subsequence
+subsequence
+subsequence
+subsequence
+
+ 
+
+ 
+The idea is to use recursion to solve this problem. If we compare the last character of the string X[0..m] with last character of the pattern Y[0..n], there are two possibilities –
+ 
+
+If the last character of the string is same as the last character of the pattern, we recuse for the remaining substring X[0..m-1] and Y[0..n-1]. Since we want all possible combinations, we also consider the case when current character of string do not form part of the solution. i.e. we ignore the last character of the string and recurse for the remaining substring X[0..m-1].
+ 
+If last character of the string is different from the last character of the pattern, then we ignore the last character of the string and recurse for the remaining substring X[0..m-1]
+ 
+ 
+Output: 
+
+7
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+
+ 
+
+ 
+The idea is to use Dynamic Programming to solve this problem. The problem has an optimal substructure. Above solution also exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again.
+
+We know that problems having optimal substructure and overlapping subproblems can be solved by using dynamic programming, in which subproblem solutions are memoized rather than computed again and again. The Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values. We can also solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The approach is illustrated below –
+
+Output: 
+
+7
+
+ 
+The time complexity of above solution is O(mn) and auxiliary space used by the program is O(mn).

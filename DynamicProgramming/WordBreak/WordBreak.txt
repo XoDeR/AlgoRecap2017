@@ -1,0 +1,61 @@
+Word Break Problem
+Given a string and a dictionary of words, determine if string can be segmented into a space-separated sequence of one or more dictionary words.
+
+
+For example,
+
+dict[] = { “this”, “th”, “is”, “famous”, “Word”, “break”, “b”,
+        “r”, “e”, “a”, “k”, “br”, “bre”, “brea”, “ak”, “problem” };
+
+string = “Wordbreakproblem”
+
+Output:
+
+Word b r e a k problem
+Word b r e ak problem
+Word br e a k problem
+Word br e ak problem
+Word bre a k problem
+Word bre ak problem
+Word brea k problem
+Word break problem
+
+ 
+
+ 
+The idea is to use recursion to solve this problem. We consider all prefixes of the current string one by one and check if the current prefix is present in the dictionary or not. If prefix is a valid word, then we add prefix to the output string and recuse for the remaining string. The base case of the recursion is when string becomes empty, and we print the output string.
+
+Output: 
+
+Word b r e a k problem
+Word b r e ak problem
+Word br e a k problem
+Word br e ak problem
+Word bre a k problem
+Word bre ak problem
+Word brea k problem
+Word break problem
+
+ 
+
+ 
+There is very famous alternate version of above problem in which we only have to determine if string can be segmented into a space-separated sequence of one or more dictionary words or not, and not actually print all sequences. This version is illustrated below –
+
+Output: 
+
+String can be segmented
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+
+ 
+
+ 
+The problem has an optimal substructure. We have seen that the problem can be broken down into smaller subproblems which can further be broken down into yet smaller subproblems, and so on. The problem also exhibits overlapping subproblems so we will end up solving the same subproblem over and over again. If we draw recursion tree, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which subproblem solutions are Memoized rather than computed again and again. This method is illustrated below –
+
+Output: 
+
+String can be segmented
+
+ 
+The time complexity of above solution is O(n3) and auxiliary space used by the program is O(n2).

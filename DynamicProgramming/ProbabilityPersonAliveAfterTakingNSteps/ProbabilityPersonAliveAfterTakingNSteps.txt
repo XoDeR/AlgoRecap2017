@@ -1,0 +1,40 @@
+Find probability that a person is alive after taking N steps on the island
+Given an island in the form of square matrix and a point inside the matrix where a person is standing. The person is allowed to move one step in any direction (right, left, top, down) on the matrix. If he steps outside the matrix, he dies. Calculate the probability that he is alive after he walks n steps on the island?
+
+ 
+
+For example,
+
+Input: 2 x 2 matrix
+Starting coordinates – (0, 0)
+Number of steps = 1
+
+Output: Alive Probability is 0.5
+
+ 
+Input: 3 x 3 matrix
+Starting coordinates – (1, 1)
+Number of steps = 1
+
+Output: Alive Probability is 1
+
+ 
+Input: 3 x 3 matrix
+Starting coordinates – (0, 0)
+Number of steps = 3
+
+Output: Alive Probability is 0.25
+ 
+
+Below solution assumes all steps carry equal probability i.e. 1/4 or 0.25. It can easily be modified to handle unequal probabilities.
+ 
+
+ 
+We can easily solve this problem with the help of Dynamic Programming. For given position (x, y) and remaining steps n, the main problem can easily be divided into sub-problems –
+
+Prob(x, y, n) = (Prob(x – 1, y, n – 1) + Prob(x + 1, y, n – 1) +
+                 Prob(x, y – 1, n – 1) + Prob(x, y + 1, n – 1)) / 4.
+				 
+Output: 
+
+Alive probability is 0.25

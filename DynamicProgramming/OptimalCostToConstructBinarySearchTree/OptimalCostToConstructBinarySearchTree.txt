@@ -1,0 +1,118 @@
+Find optimal cost to construct Binary Search Tree
+Find optimal cost to construct binary search tree where each key can repeat several times. We are given frequency of each key in same order as corresponding keys in inorder traversal of a binary search tree.
+
+
+ 
+In order to construct a binary search tree, for each given key, we have to find out if key already exists in the BST or not. The cost of finding a key in BST is equal to the level of the key (if present in the BST).
+ 
+
+
+For example, consider below frequency array
+freq[] = { 25, 10, 20 }
+
+As frequency follows inorder order (ascending keys), let’s consider index of freq[] as corresponding keys i.e
+  – key 0 occurs 25 times
+  – key 1 occurs 10 times
+  – key 2 occurs 20 times
+
+Output: The optimal cost of constructing BST is 95.
+Below is the optimum BST.
+
+    0(25*1)              – – – – – – level 1
+        \
+         \
+          \
+          2(20*2)        – – – – – – level 2
+            /
+           /
+          /
+       1(10*3)           – – – – – – level 3
+
+25 searches of key 0 will cost 1 each,
+20 searches of key 2 will cost 2 each, 
+10 searches of key 1 will cost 3 each. 
+
+So, 
+Optimal Cost is: 25*1 + 20*2 + 10*3 = 95
+ 
+
+ 
+Other possible BSTs are –
+
+    0(25*1)               – – – – – – level 1
+        \
+         \
+          \
+         1(10*2)          – – – – – – level 2
+            \
+             \
+              \
+           2(20*3)        – – – – – – level 3
+
+Cost is: 25 + 10*2 + 20*3 = 105
+which is more than the optimal cost 95
+ 
+
+ 
+            2(20*1)      – – – – – – level 1
+            /
+           /
+          /
+      1(10*2)            – – – – – – level 2
+        /
+       /
+      /
+  0(25*3)                – – – – – – level 3
+
+Cost is: 20 + 10*2 + 25*3 = 115
+which is more than the optimal cost 95
+ 
+
+ 
+       1(10*1)            – – – – – – level 1
+        /  \
+       /    \
+      /      \
+  0(25*2)    2(20*2)      – – – – – – level 2
+
+Cost is: 10 + 25*2 + 20*2 = 100
+which is more than the optimal cost 95
+ 
+
+  
+          2(20*1)        – – – – – – level 1
+          /
+         /
+        /
+      0(25*2)            – – – – – – level 2
+        \
+         \
+          \
+        1(10*3)          – – – – – – level 3
+
+Cost is: 20 + 25*2 + 10*3 = 100
+which is more than the optimal cost 95
+
+ 
+
+ 
+The idea is very simple. We consider each key as a root and find an optimal solution by recursively finding the optimal cost of left and right subtree and add left and right child cost to current node’s cost (frequency of that key * level of that node). If current node’s cost is optimal, we update the result.
+
+Output: 
+
+The optimal cost of constructing BST is 95
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+
+ 
+
+ 
+The problem has an optimal substructure. We have seen that the problem can be broken down into smaller subproblems which can further be broken down into yet smaller subproblems, and so on. The problem also exhibits overlapping subproblems so we will end up solving the same subproblem over and over again. We know that problems having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which subproblem solutions are Memoized rather than computed again and again. This method is illustrated below –
+
+Output: 
+
+The optimal cost of constructing BST is 95
+
+ 
+The time complexity of above solution is O(n4).

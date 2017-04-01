@@ -1,0 +1,50 @@
+Wildcard Pattern Matching
+
+Given a string and a pattern containing wildcard characters i.e. ‘*’ and ‘?’, where ‘?’ can match to any single character in input string and ‘*’ can match to any number of characters including zero characters, design an efficient algorithm to find if the pattern matches with the complete input string or not.
+
+ 
+For example,
+
+
+Input: string = “xyxzzxy”, pattern = “x***y”
+Output: Match
+
+Input: string = “xyxzzxy”, pattern = “x***x”
+Output: No Match
+
+Input: string = “xyxzzxy”, pattern = “x***x?”
+Output: Match
+
+Input: string = “xyxzzxy”, pattern = “*”
+Output: Match
+
+ 
+
+ 
+The idea is to use Dynamic Programming here. If we carefully analyze the problem, we can see that it can easily be further divided into sub-problems. Let’s take top-bottom approach to solve this problem.
+For a given pattern[0..m] and str[0..n],
+
+If pattern[m] == ‘*’, if ‘*’ matches with current character in input string we will move to next character in the string else we ignore ‘*’ and move to next character in the pattern.
+If pattern[m] == ‘?’, we ignore current characters of both string and pattern and check if pattern[0..m-1] matches str[0..n-1]
+If the current character in pattern is not a wildcard character, it should match with current character in the input string
+Special care has to be taken to handle base conditions:
+
+If both input string and pattern reaches their end, we return true
+If only pattern reaches its end, we return false
+If only input string reaches its end, return true only if remaining characters in the pattern are all ‘*’
+Below is top-down DP solution in C++ using memoization –
+
+Output: 
+
+Match
+
+ 
+
+Iterative solution –
+
+Output: 
+
+Match
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n2).

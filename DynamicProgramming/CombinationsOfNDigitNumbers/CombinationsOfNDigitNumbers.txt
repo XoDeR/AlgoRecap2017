@@ -1,0 +1,49 @@
+Count total possible combinations of N-digit numbers in a mobile keypad
+Given a mobile keypad having digits from [0-9] associated with each key, count total possible combinations of digits having length n. We can start with any digit and press only four adjacent keys of any digit. Keypad also contains * and # key which we are not allowed to press.
+
+
+  mobile-keypad
+ 
+
+For example, for N = 2 the combinations are –
+
+00, 08, 11, 12, 14, 21, 22, 23, 25, 32, 33, 34, 41, 44, 45, 47, . . . 96, 98, 99
+
+ 
+
+ 
+We can use recursion to solve this problem since the problem has an optimal substructure. The problem can be broken down into smaller, simple “subproblems”, which can further be divided into yet simpler, smaller subproblems until the solution becomes trivial.
+
+The idea is to consider each digit one by one, and count all N-digit numbers starting from current digit. For each digit i, we recurse for digit i and for all digits reachable from i. To easily find all digits reachable from any digit, we use a multimap that stores the mapping of digits reachable from every digit. When the digit becomes N-digit, we update the count.
+
+Above solution also exhibits overlapping subproblems. As shown below, the same sub-problems (highlighted in same color) are getting computed again and again.
+
+
+N-digit number starting from 1 =
+1 + (N-1) digit number starting from 1
+2 + (N-1) digit number starting from 2
+4 + (N-1) digit number starting from 4
+
+N-digit number starting from 2 =
+
+1 + (N-1) digit number starting from 1
+2 + (N-1) digit number starting from 2
+3 + (N-1) digit number starting from 3
+5 + (N-1) digit number starting from 5
+
+N-digit number starting from 5 =
+
+2 + (N-1) digit number starting from 2
+4 + (N-1) digit number starting from 4
+5 + (N-1) digit number starting from 5
+6 + (N-1) digit number starting from 6
+8 + (N-1) digit number starting from 8
+
+We know that problems having optimal substructure and overlapping subproblems can be solved by using dynamic programming, in which subproblem solutions are Memoized rather than computed again and again. The top-down Memoized approach is illustrated below –
+
+Output: 
+
+Total possible combinations are 36
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).

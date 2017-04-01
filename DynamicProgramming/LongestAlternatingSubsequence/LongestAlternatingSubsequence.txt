@@ -1,0 +1,55 @@
+Longest alternating subsequence
+Longest Alternating Subsequence problem is a problem of finding a subsequence of a given sequence in which the elements are in alternating order, and in which the sequence is as long as possible. In order words, find the length of longest subsequence with alternate low and high elements.
+
+
+ 
+
+The problem differs from problem of finding longest alternating subarray. Unlike subarrays, subsequences are not required to occupy consecutive positions within the original sequences.
+ 
+For example, consider array A[] = [8, 9, 6, 4, 5, 7, 3, 2, 4]
+
+The length of longest subsequence is 6 and the subsequence is [8, 9, 6, 7, 3, 4] as
+(8 < 9 > 6 < 7 > 3 < 4)
+
+Note that the Longest Subsequence is not unique. Below are few more subsequences of length 6 –
+
+(8, 9, 6, 7, 2, 4)
+(8, 9, 4, 7, 3, 4)
+(8, 9, 4, 7, 2, 4)
+…
+…
+and many more..
+
+ 
+
+ 
+We can use Recursion to solve this problem. The idea is to maintain a flag to indicate if next element in the sequence should be smaller or greater than the previous element. Then for any element arr[i] at index i, we have two choices –
+1. We include the element in the subsequence.
+
+if the flag is true and arr[i-1] < arr[i], we include arr[i] as next high in the subsequence
+if the flag is false and arr[i-1] > arr[i], we include arr[i] as next low in the subsequence
+Then we recurse for next element by flipping the flag. If we get longest subsequence by including the element in the subsequence, we update the result.
+ 
+
+2. We exclude the element in subsequence.
+
+We exclude the current element and recurse for next element (flag remains same). If we get longest subsequence by excluding the element in subsequence, we update the result.
+
+Output: 
+
+The length of Longest Subsequence is 6
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+ 
+
+ 
+The problem has an optimal substructure as the problem can be broken down into smaller subproblems which can further be broken down into yet smaller subproblems, and so on. The problem also clearly exhibits overlapping subproblems so we will end up solving the same subproblem over and over again. The repeated sub-problems can be seen by drawing recursion tree for values of n. We know that problems having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which subproblem solutions are saved rather than computed again and again. This method is illustrated below which follows top-down approach using Memoization.
+
+
+Output: 
+
+The length of Longest Subsequence is 6
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n).
