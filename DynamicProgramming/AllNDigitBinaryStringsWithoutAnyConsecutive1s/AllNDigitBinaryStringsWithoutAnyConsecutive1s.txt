@@ -1,0 +1,47 @@
+Find all N-digit binary strings without any consecutive 1’s
+Given a positive integer N, count all N-digit binary strings without any consecutive 1’s.
+
+
+For example, for N = 5 the binary strings satisfies the given constraints are
+
+00000 00001 00010 00100 00101 01000 01001 01010 10000 10001 10010 10100 10101
+
+ 
+
+ 
+A simple solution would be to generate all N-digit strings and print only those strings that satisfies the given constraints. The complexity of this solution would be exponential.
+ 
+
+A better solution would be to generate only those N-digit strings that satisfies the given constraints. The idea is to use recursion. At each point in the recursion, we append 0 and 1 to the partially formed number and recuse with one less digit. The trick here is that we append 1 and recuse only if last digit of partially formed number is 0. That way, we will never have any consecutive 1’s in output string.
+
+Output: 
+
+Number of 5-digit binary strings without any consecutive 1’s are 13
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+
+ 
+
+ 
+The problem has an optimal substructure and also exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using dynamic programming, in which subproblem solutions are memoized rather than computed again and again.
+
+The bottom-up approach is illustrated below where we solve smaller sub-problems first, then solve larger sub-problems from them.
+
+Output: 
+
+Number of 5-digit binary strings without any consecutive 1’s are 13
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
+
+ 
+
+ 
+How to print all binary strings?
+
+Below recursive code prints all binary strings as well.
+
+Output: 
+
+00000 00001 00010 00100 00101 01000 01001 01010 10000 10001 10010 10100 10101

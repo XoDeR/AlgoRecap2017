@@ -1,0 +1,45 @@
+Minimum Sum Partition problem
+Given a set of positive integers S, partition the set S into two subsets S1, S2 such that the difference between the sum of elements in S1 and the sum of elements in S2 is minimized.
+
+
+For example,
+S = {10, 20, 15, 5, 25 },
+
+We can partition S into two partitions where minimum absolute difference between the sum of elements is 5.
+
+S1 = {10, 20, 5}
+S2 = {15, 25}
+
+Note that this solution is not unique. Below is another solution.
+
+S1 = {10, 25}
+S2 = {20, 15, 5}
+
+ 
+
+ 
+This problem is an optimization version of the partition problem. The idea is to consider each item in the given set S one by one and for each item, there are two possibilities –
+ 
+
+1. We include current item in the subset S1 and recurse for remaining items.
+2. We include current item from subset S2 and recurse for remaining items.
+ 
+
+Finally, we return minimum difference we get by including current item in S1 and S2. When there are no items left in the set, we return the absolute difference between elements of S1 and S2.
+
+Output: 
+
+The minimum difference is 5
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+ 
+
+ 
+The problem has an optimal substructure. That means the problem can be broken down into smaller, simple “subproblems”, which can further be divided into yet simpler, smaller subproblems until the solution becomes trivial. Above solution also exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using Dynamic Programming, in which subproblem solutions are Memoized rather than computed again and again. Below Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values.
+
+Output: 
+
+The minimum difference is 5
+
+The time complexity of above solution is O(n x sum) where sum is sum of all elements in the array. Auxiliary space used by the program is also O(n x sum).

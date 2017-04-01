@@ -1,0 +1,53 @@
+Subset sum problem
+Given a set of positive integers and an integer s, is there any non-empty subset whose sum to s.
+
+
+For example,
+
+Input:   
+set = { 7, 3, 2, 5, 8 }
+sum = 14
+
+Output: Yes
+subset { 7, 2, 5 } sums to 14
+
+ 
+
+ 
+Naive algorithm would be to cycle through all subsets of N numbers and, for every one of them, check if the subset sums to the right number. The running time is of order O(2NN), since there are 2N subsets and, to check each subset, we need to sum at most N elements.
+ 
+
+A better exponential time algorithm uses recursion. Subset sum can also be thought of as a special case of the knapsack problem. For each item, there are two possibilities –
+ 
+
+1. We include current item in the subset and recurse for remaining items with remaining sum.
+ 
+2. We exclude current item from subset and recurse for remaining items.
+ 
+Finally, we return true if we get subset by including or excluding current item else we return false. The base case of the recursion would be when no items are left or sum becomes negative. We return true when sum becomes 0 i.e. subset is found.
+
+Output: 
+
+Yes
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+ 
+
+ 
+The problem has an optimal substructure. That means the problem can be broken down into smaller, simple “subproblems”, which can further be divided into yet simpler, smaller subproblems until the solution becomes trivial. Above solution also exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using Dynamic Programming, in which subproblem solutions are Memoized rather than computed again and again. Below Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values.
+
+Output: 
+
+Yes
+
+ 
+The time complexity of above solution is O(n x sum). Auxiliary space used by the program is also O(n x sum).
+ 
+
+ 
+We can also solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The following bottom-up approach computes T[i][j], for each 1 <= i <= n and 1 <= j <= sum, which is true if subset with sum j can be found using items up to first i items. It uses value of smaller values i and j already computed. It has the same asymptotic run-time as Memoization but no recursion overhead.
+
+Output: 
+
+Yes

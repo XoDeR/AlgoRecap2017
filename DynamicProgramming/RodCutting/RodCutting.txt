@@ -1,0 +1,55 @@
+Rod Cutting
+Given a rod of length n and list of prices of rod of length i where 1 <= i <= n, find the optimal way to cut rod into smaller rods in order to maximize profit.
+
+
+For example, consider below rod lengths and values
+
+Input:   
+length[] = [1, 2, 3, 4, 5, 6, 7, 8]
+price [] = [1, 5, 8, 9, 10, 17, 17, 20]
+ 
+
+Best: Cut the rod into two pieces of length 2 each
+to gain revenue of 5 + 5 = 10
+
+Cut               Profit
+4                  9
+1, 3              (1 + 8) = 9
+2, 2              (5 + 5) = 10
+3, 1              (8 + 1) = 9
+1, 1, 2           (1 + 1 + 5) = 7
+1, 2, 1	          (1 + 5 + 1) = 7
+2, 1, 1	          (5 + 1 + 1) = 7
+1, 1, 1, 1        (1 + 1 + 1 + 1) = 4
+
+ 
+
+ 
+The idea is very simple. We are given an array price[] where rod of length i has a value price[i-1]. One by one, we partition the given rod of length n into two parts of length i and n – i. We recuse for rod of length n – i but don’t divide rod of length i any further. Finally, we take maximum of all values. This yields the below recursive relation –
+
+
+rodcut(n) = max { price[i – 1] + rodCut(n – i) } where 1 <= i <= n
+
+Output: 
+
+Profit is 10
+
+ 
+The time complexity of above solution is O(nn) and auxiliary space used by the program is O(1).
+ 
+
+ 
+We have seen that the problem can be broken down into smaller subproblems which can further be broken down into yet smaller subproblems, and so on. Sp the problem has an optimal substructure. Let us consider recursion tree for rod of length 4.
+
+  rod-cutting-problem
+
+As we can see, the same sub-problems (highlighted in same color) are getting computed again and again. So the problem also exhibits overlapping subproblems. We know that problems having optimal substructure and overlapping subproblems can be solved by dynamic programming, in which subproblem solutions are Memoized rather than computed again and again. We will solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The following bottom-up approach computes T[i], which stores maximum profit achieved from rod of length i for each 1 <= i <= n. It uses value of smaller values i already computed.
+
+Output: 
+
+Profit is 10
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n).
+
+

@@ -1,0 +1,34 @@
+Maximize value of the expression
+Given an array A, maximize value of the expression (A[s] – A[r] + A[q] – A[p]) where l, k, j and i are indexes of the input array and s > r > q > p.
+
+
+For example,
+
+Input:  A[] = [3, 9, 10, 1, 30, 40]
+
+Output: 46
+
+(40 – 1 + 10 – 3) will result in maximum value
+
+ 
+
+ 
+Naive solution would be to generate all combinations of such numbers. The time complexity of this solution would be O(n4).
+ 
+
+We can use Dynamic Programming to solve this problem. The idea is to create four lookup tables L1[], L2[], L3[] and L4[] where –
+
+L1[] stores the maximum value of A[s]
+L2[] stores the maximum value of A[s] – A[r]
+L3[] stores the maximum value of A[s] – A[r] + A[q]
+L4[] stores the maximum value of A[s] – A[r] + A[q] – A[p]
+
+Then the maximum value would be present in index 0 of L4[], which is our required answer.
+
+Output: 
+
+46
+
+ 
+
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).

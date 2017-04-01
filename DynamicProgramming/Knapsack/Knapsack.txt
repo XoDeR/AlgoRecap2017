@@ -1,0 +1,56 @@
+0-1 Knapsack problem
+Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. Items are indivisible; you either take an item or not (0-1 property).
+
+
+For example,
+
+Input:   
+value = [ 20, 5, 10, 40, 15, 25 ]
+weight = [ 1, 2, 3, 8, 7, 4 ]
+int W = 10
+
+Output: Knapsack value is 60
+
+(value = 20 + 40 = 60
+weight = 1 + 8 = 9 < W) 
+ 
+
+ 
+The idea is to use recursion to solve this problem. For each item, there are two possibilities –
+ 
+
+1. We include current item in knapSack and recurse for remaining items with decreased capacity of Knapsack. If the capacity becomes negative, do not recuse or return -INFINITY.
+ 
+2. We exclude current item from knapSack and recurse for remaining items.
+ 
+
+Finally, we return maximum value we get by including or excluding current item. The base case of the recursion would be when no items are left or capacity becomes 0.
+
+Below solution finds the maximum value that can be attained with weight less than or equal to W recursively by using above relations.
+
+ Output: 
+
+Knapsack value is 60
+
+ 
+The time complexity of above solution is exponential and auxiliary space used by the program is O(1).
+
+ 
+
+ 
+The problem has an optimal substructure. That means the problem can be broken down into smaller, simple “subproblems”, which can further be divided into yet simpler, smaller subproblems until the solution becomes trivial. Above solution also exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using Dynamic Programming, in which subproblem solutions are Memoized rather than computed again and again. Below Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values.
+
+Output: 
+
+Knapsack value is 60
+
+ 
+The time complexity of above solution is O(nW) where n is the number of items in the input and W is the Knapsack capacity. Auxiliary space used by the program is also O(nW).
+ 
+
+ 
+We can also solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The following bottom-up approach computes T[i][j], for each 1 <= i <= n and 0 <= j <= W, which is maximum value that can be attained with weight less than or equal to j and using items up to first i items. It uses value of smaller values i and j already computed. It has the same asymptotic run-time as Memoization but no recursion overhead.
+
+Output: 
+
+Knapsack value is 60
