@@ -1,0 +1,51 @@
+Matrix Chain Multiplication
+Determine optimal parenthesization of a product of n matrices.
+
+
+ 
+Matrix chain multiplication (or Matrix Chain Ordering Problem, MCOP) is an optimization problem that to find the most efficient way to multiply given sequence of matrices. The problem is not actually to perform the multiplications, but merely to decide the sequence of the matrix multiplications involved.
+ 
+The matrix multiplication is associative as no matter how the product is parenthesized, the result obtained will remain the same. For example, for four matrices A, B, C, and D, we would have
+
+((AB)C)D = ((A(BC))D) = (AB)(CD) = A((BC)D) = A(B(CD))
+
+However, the order in which the product is parenthesized affects the number of simple arithmetic operations needed to compute the product, or the efficiency. For example, if A is a 10 × 30 matrix, B is a 30 × 5 matrix, and C is a 5 × 60 matrix, then
+
+computing (AB)C needs (10×30×5) + (10×5×60) = 1500 + 3000 = 4500 operations
+
+while computing A(BC) needs (30×5×60) + (10×30×60) = 9000 + 18000 = 27000 operations
+
+Clearly the first method is more efficient.
+ 
+
+ 
+The idea is to break the problem into a set of related subproblems which group the given matrix in such a way that yields the lowest total cost. Below is the recursive algorithm to find the minimum cost –
+
+Take the sequence of matrices and separate it into two subsequences.
+Find the minimum cost of multiplying out each subsequence.
+Add these costs together, and add in the cost of multiplying the two result matrices.
+Do this for each possible position at which the sequence of matrices can be split, and take the minimum over all of them.
+For example, if we have four matrices ABCD, we compute the cost required to find each of (A)(BCD), (AB)(CD), and (ABC)(D), making recursive calls to find the minimum cost to compute ABC, AB, CD, and BCD. We then choose the best one. Better still, this yields not only the minimum cost, but also demonstrates the best way of doing the multiplication.
+
+Output: 
+
+Minimum cost is 4500
+
+ 
+
+The time complexity of above solution is exponential as we’re doing a lot of redundant work. For example, for matrix ABCD we will make a recursive call to find the best cost for computing both ABC and AB. But finding the best cost for computing ABC also requires finding the best cost for AB. As the recursion grows deeper, more and more of this type of unnecessary repetition occurs. The idea is to use memoization. Now each time we compute the minimum cost needed to multiply out a specific subsequence, we save it. If we are ever asked to compute it again, we simply give the saved answer, and do not recompute it.
+
+Output: 
+
+Minimum cost is 4500
+
+ 
+The time complexity of above solution is O(n3) and auxiliary space used by the program is O(1).
+ 
+
+ 
+The following bottom-up approach computes, for each 2 <= k <= n, the minimum costs of all subsequences of length k, using the costs of smaller subsequences already computed. It has the same asymptotic runtime and requires no recursion.
+
+Output: 
+
+Minimum cost is 4500

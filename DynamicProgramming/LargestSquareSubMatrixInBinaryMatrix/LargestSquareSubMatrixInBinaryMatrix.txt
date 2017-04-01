@@ -34,7 +34,7 @@ Similarly for a 3◊3 matrix, each of top, left, and top-left neighbor of its bott
 
 In general for any n x n square matrix, each of its neighbors at the top, left, and top-left corner should at-least have size of (n-1)x(n-1). The reverse of this statement is also true. If the size of the square sub-matrix ending at top, left, and top-left neighbors of any cell in the given matrix is at-least (n-1), then we can get n x n sub-matrix from that cell. That is the reason behind picking up the smallest neighboring square and adding 1 to it.
 
-Below figure might help in visualizing things better ñ
+Below figure might help in visualizing things better ÅE
 
   maximum-square-matrix-dp
   
@@ -49,4 +49,12 @@ The time complexity of above solution is exponential and auxiliary space used by
  
 
  
-Above solution exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using dynamic programming, in which subproblem solutions are memoized rather than computed again and again. The Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values. We can also solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The approach is illustrated below ñ
+Above solution exhibits overlapping subproblems. If we draw the recursion tree of the solution, we can see that the same sub-problems are getting computed again and again. We know that problems having optimal substructure and overlapping subproblems can be solved by using dynamic programming, in which subproblem solutions are memoized rather than computed again and again. The Memoized version follows the top-down approach, since we first break the problem into subproblems and then calculate and store values. We can also solve this problem in bottom-up manner. In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The approach is illustrated below
+
+Output: 
+
+The size of largest square sub-matrix of 1Åfs is 3
+
+ 
+
+The time complexity of above solution is O(M x N) and auxiliary space used by the program is O(M x N).
