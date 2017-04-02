@@ -1,0 +1,54 @@
+Find maximum sum submatrix in a given matrix
+Given a M x N matrix, calculate maximum sum k x k sub-matrix in a given M x N matrix in O(M*N) time. Here, 0 < k < M, N.
+
+ 
+
+For example, consider below 5 x 5 matrix
+
+[  3 -4  6 -5  1 ]
+[  1 -2  8 -4 -2 ]
+[  3 -8  9  3  1 ]
+[ -7  3  4  2  7 ]
+[ -3  7 -5  7 -6 ]
+
+ 
+
+If k = 2, maximum sum k x k sub-matrix is
+
+[ 9 3 ]
+[ 4 2 ]
+
+ 
+
+If k = 3, maximum sum k x k sub-matrix is
+
+[ 8 -4 -2 ]
+[ 9  3  1 ]
+[ 4  2  7 ]
+
+ 
+
+We strongly suggest you to go through below post as a prerequisite of below solution –
+Calculate sum of all elements in a sub-matrix in constant time
+ 
+
+ 
+The idea is to pre-process the matrix. We take an auxiliary matrix sum[][] where sum[i][j] will store the sum of the elements in matrix from (0, 0) to (i, j). We can easily calculate the value of sum[i][j] in constant time using below relation –
+
+    sum[i][j] = sum[i][j – 1] + sum[i – 1][j] + mat[i][j] – sum[i – 1][j – 1];
+
+Now to find maximum sum k x k sub-matrix, we consider every sub-matrix of size k x k and calculate their sum in constant time by directly using below relation –
+
+    submatrixSum = sum[i][j] – sum[i – k][j] – sum[i][j – k] + sum[i – k][j – k];
+
+Here, (i, j) is bottom right corner coordinates of k x k sub-matrix. Finally, we print the sub-matrix that has maximum sum.
+
+Output: 
+
+8 -4 -2
+9  3  1
+4  2  7
+
+ 
+Time complexity of above solution is O(M * N).
+Auxiliary space used by the program is O(M * N).
