@@ -1,0 +1,46 @@
+Breadth First Search (BFS) | Iterative & Recursive Implementation
+Breadth first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a ‘search key’) and explores the neighbor nodes first, before moving to the next level neighbors.
+
+ 
+
+
+Below graph shows order in which the nodes are discovered in BFS
+
+Breadth first tree
+
+ 
+
+ 
+Breadth first search (BFS) is a graph traversal algorithm that explores vertices in the order of their distance from the source vertex, where distance is the minimum length of a path from source vertex to the node as evident from above example.
+
+Applications of BFS –
+
+Copying garbage collection, Cheney’s algorithm
+Finding the shortest path between two nodes u and v, with path length measured by number of edges (an advantage over depth first search)
+Testing a graph for bipartiteness
+Minimum Spanning Tree for unweighted graph
+Web crawler
+Finding nodes in any connected component of a graph
+Ford–Fulkerson method for computing the maximum flow in a flow network
+Serialization/Deserialization of a binary tree vs serialization in sorted order, allows the tree to be re-constructed in an efficient manner.
+Non-recursive implementation of BFS is similar to the non-recursive implementation of DFS, but differs from it in two ways:
+
+It uses a queue instead of a stack
+It checks whether a vertex has been discovered before pushing the vertex rather than delaying this check until the vertex is dequeued from the queue
+Iterative C++ Implementation of BFS –
+
+Output: 
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14
+
+ 
+
+Recursive C++ Implementation of BFS –
+
+Output: 
+
+1 2 3 4 5 6 7 8 9 10 11 12
+
+ 
+
+Time complexity of BFS traversal is O(n + m) where n is number of vertices and e is number of edges in the graph. Please note that O(m) may vary between O(1) and O(n2), depending on how dense the graph is.

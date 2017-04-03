@@ -1,0 +1,23 @@
+Minimum number of throws required to win Snake and Ladder game
+Find minimum number of throws required to win given Snake and Ladder game.
+
+
+For example,
+
+For below game, minimum number of dice throws required is atleast 7 to win.
+
+  Snake and Ladder Problem
+ 
+
+ 
+The idea is to consider the snack and ladder board as directed graph and run BFS from starting node which is vertex 0 as per game rules. We construct a directed graph keeping in mind below conditions –
+
+1. For any vertex in the graph v, we have an edge from v to v + 1, v + 2, v + 3, v + 4, v + 5, v + 6 as we can reach any of these nodes in one throw of dice from node v.
+
+2. If any of these neighbors of v has a ladder or snake which takes you to position x, then x becomes the neighbor instead of the base of the ladder or head of the snake.
+
+Now the problem is transformed into a Shortest path between two nodes in a directed graph problem. We represent the snake and ladder board using a map.
+
+Output: 
+
+7

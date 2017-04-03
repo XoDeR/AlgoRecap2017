@@ -1,0 +1,27 @@
+Total number of paths in given digraph from given source to destination having exactly m edges
+Given a digraph (Directed Graph), find the total number of routes to reach the destination from given source that have exactly m edges.
+
+
+For example, consider below graph,
+  find-number-of-routes-in-diagraph
+
+Let source = 0, destination = 3, no. of edges m = 4
+
+It has 3 routes from source 0 to destination 3
+0-1-5-2-3
+0-1-6-5-3
+0-6-5-2-3
+
+The solution should return number of routes 3.
+ 
+
+ 
+The idea is to do BFS traversal from the given source vertex. BFS is generally used to find shortest paths in graphs/matrix but we can modify normal BFS to meet our requirements. Usually BFS don’t explore already discovered vertex again, but here we do the opposite. In order to cover all possible paths from source to destination, we remove this check from BFS. But if the graph contains a cycle, removing this check will cause program to go into an infinite loop. We can easily handle that if we don’t consider nodes having BFS depth of more than m. Basically we maintain two things in BFS queue node –
+
+current vertex number
+current depth of BFS (i.e. how far away current node is from the source?)
+So whenever destination vertex is reached and BFS depth is equal to m, we update the result. The BFS will terminate when we have explored every path in the given graph or BFS depth exceeds m.
+
+Output: 
+
+3

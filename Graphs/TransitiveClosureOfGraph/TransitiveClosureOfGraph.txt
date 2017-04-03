@@ -1,0 +1,51 @@
+Transitive Closure of a Graph
+Given a digraph G, the transitive closure is a digraph G’ such that (i, j) is an edge in G’ if there is a directed path from i to j in G. The resultant digraph G’ representation in form of adjacency matrix is called the connectivity matrix.
+
+
+For example, consider below directed graph –
+
+  transitive-closure
+Its connectivity matrix C is –  
+
+1 0 1 0
+1 1 1 0
+0 0 1 0
+1 1 1 1
+
+The value of C[i][j] is 1 only if a directed path exists from vertex i to vertex j.
+
+ 
+Method 1:
+
+As discussed in previous post, the Floyd–Warshall algorithm can be used to for finding the transitive closure of a graph in O(V3) time. The algorithm returns the shortest paths between every of vertices in graph. We can easily modify the algorithm to return 1/0 depending upon path exists between pair of vertices or not. The implementation can be seen here.
+
+Method 2: (Commonly used)
+
+Warshall’s algorithm is commonly used to construct transitive closures. It is very identical to Floyd’s all-pairs-shortest-path algorithm. The main idea behind Warshall’s algorithm is that a path exists between two pair of vertices i, j if and only if there is an edge from i to j or any of the below condition is true.
+
+there is a path from i to j going through vertex 1
+there is a path from i to j going through vertex 1 and/or 2
+there is a path from i to j going through vertex 1, 2, and/or 3
+there is a path from i to j going through any of the other vertices
+The time complexity of this algorithm is same as that of Floyd–Warshall algorithm i.e. O(V3) but it reduce storage by retaining only one bit for each matrix element (e.g. we can use bool data-type instead of int). The implementation can be seen here.
+
+Method 3: (For dense graphs)
+
+We know that all pairs of vertices are reachable from each other in each strongly connected component of a graph. We also know that the strongly connected components of graph can be computed in linear time. The idea is to exploit this fact to compute transitive closure of the graph. Further, if (x,y) is an edge between two vertices in different strongly connected components, every vertex in y’s component is reachable from each vertex in x’s component. Thus the problem reduces to finding the transitive closure on a graph of strongly connected components, which should have considerably fewer edges and vertices than given graph. We will discuss this approach soon in separate post.
+
+Method 4: (For sparse graphs)
+
+We know that we can find all vertices reachable from a vertex v by calling DFS on vertex v. If we do the same for all vertices present in the graph and store the path information in a matrix, we will get transitive closure of the graph. Also, the total time complexity will reduce to O(V(V+E)) which is equal O(V3) only if graph is dense (remember E = V2 for a dense graph). We can also use BFS instead of DFS.
+
+Output: 
+
+1 0 1 0
+1 1 1 0
+0 0 1 0
+1 1 1 1
+
+Transitive closure is used to answer reachability queries (can we get to x from y?) efficiently in constant time after preprocessing of constructing the transitive closure.
+
+Transitive Reduction
+
+Transitive reduction (also known as minimum equivalent digraph) is reducing the number of edges while maintaining identical reachability properties i.e the transitive closure of G is identical to the transitive closure of the transitive reduction of G. The primary application of transitive reduction is space minimization, by eliminating redundant edges from G that do not effect reachability.

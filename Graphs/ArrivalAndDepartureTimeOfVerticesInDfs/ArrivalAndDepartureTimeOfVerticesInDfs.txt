@@ -1,0 +1,40 @@
+Arrival and Departure Time of Vertices in DFS
+Given a graph, find arrival & departure time of its vertices in DFS. Arrival Time is the time at which the vertex was explored for the first time in the DFS and Departure Time is the time at which we have explored all the neighbors of the vertex and we are ready to backtrack.
+
+
+Below directed graph has two connected components. Right hand side shows Arrival Time & Departure Time of Vertices when DFS is starting from vertex 0
+ 
+  Arrival Time & Departure Time of Vertices in DFS
+
+ 
+
+ 
+The idea is to run DFS. Before exploring any adjacent nodes of any vertex in DFS, we note the arrival time of that vertex and after exploring all adjacent nodes of the vertex, we note its departure time. After the DFS call is over i.e. we have discovered all the vertices of the graph, we print the arrival and departure time of the vertices.
+
+Please note that arrival and departure time of vertices may vary depending upon the insertion order of edges in the graph and starting node of DFS.
+
+Output: 
+
+Vertex 0 (0, 11)
+Vertex 1 (1, 2)
+Vertex 2 (3, 10)
+Vertex 3 (4, 7)
+Vertex 4 (8, 9)
+Vertex 5 (5, 6)
+Vertex 6 (12, 15)
+Vertex 7 (13, 14)
+
+ 
+
+Time complexity of DFS traversal is O(n + m) where n is number of vertices and e is number of edges in the graph. Please note that O(m) may vary between O(1) and O(n2), depending on how dense the graph is.
+ 
+
+Applications of finding Arrival and Departure Time –
+
+Topological sorting in a DAG(Directed Acyclic Graph)
+Finding 2-(edge or vertex)-connected components.
+Finding 3-(edge or vertex)-connected components.
+Finding the bridges of a graph.
+Finding biconnectivity in graphs
+Detecting Cycle in a Directed Graph
+Tarjan’s Algorithm to find Strongly Connected Components and many more..

@@ -1,0 +1,46 @@
+Check if given Graph is Strongly Connected or not
+Given a directed graph, check if it is strongly connected or not. A directed graphs is said to be strongly connected if every vertex is reachable from every other vertex.
+
+
+For example, below graph is strongly connected as path exists between all pairs of vertices
+
+  tarjans-algo
+
+ 
+A simple solution would be to perform DFS or BFS starting from every vertex in the graph. If each DFS/BFS visits every other vertex in the graph, the graph is strongly connnected.
+
+Output: 
+
+Graph is Strongly Connected
+
+ 
+
+Time complexity of above solution is O(n(n + m)) where n is number of vertices and m is number of edges in the graph.
+Can we do better?
+
+We can say that G is strongly connected if
+1. DFS(G, v) visits all vertices in graph G, then there exists path from v to every other vertex in G and
+2. There exists a path from every other vertex in G to v
+
+Proof:
+For G to be strongly connected, there should exists a path from x -> y and from y -> x for any pair of vertices (x, y) in the graph.
+
+If Point 1 and Point 2 are true,
+We can reach x -> y by going from vertex x to vertex v (from pt. 2) and then from vertex v to vertex y (from pt. 1).
+Similarly, we can reach y -> x by going from vertex y to vertex v (from pt. 2) and then from vertex v to vertex x (from pt. 1).
+
+Complete Algorithm –
+
+1. Start DFS(G, v) from a random vertex v of the graph G. If DFS(G, v) fails to reach every other vertex in the graph G, then there is some vertex u, such that there is no directed path from v to u, and thus G is not strongly connected. If it does reach every vertex, then there is a directed path from v to every other vertex in the graph G.
+
+2. Reverse the direction of all edges in the directed graph G.
+
+3. Again run a DFS starting from vertex v. If the DFS fails to reach every vertex, then there is some vertex u, such that in the original graph there is no directed path from u to v. On the other hand, if it does reach every vertex, then in the original graph there is a directed path from every vertex u to v.
+
+Thus, if G passes both DFSs, it is strongly connected.
+
+Output: 
+
+Graph is Strongly Connected
+
+Time complexity of above solution is O(n + m) where n is number of vertices and e is number of edges in the graph. Please note that O(m) may vary between O(1) and O(n2), depending on how dense the graph is.

@@ -1,0 +1,73 @@
+Depth First Search (DFS) | Iterative & Recursive Implementation
+Depth first search (DFS) is an algorithm for traversing or searching tree or graph data structures. One starts at the root (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible along each branch before backtracking.
+
+ 
+
+
+Below graph shows order in which the nodes are discovered in DFS
+
+depth-first-tree
+
+ 
+
+ 
+Depth first search in Trees
+
+A tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any acyclic connected graph is a tree. For a tree, we have below traversal methods –
+
+preorder: visit each node before its children.
+postorder: visit each node after its children.
+inorder (for binary trees only): visit left subtree, node, right subtree.
+
+These are already covered in detail in separate posts.
+
+Depth first search in Graph
+
+Depth first search is a way of traversing graphs, which is closely related to preorder traversal of a tree. Below is recursive implementation of preorder traversal:
+
+procedure preorder(treeNode v)
+{
+    visit(v);
+    for each child u of v
+    preorder(u);
+}
+
+To turn this into a graph traversal algorithm, we basically replace “child” by “neighbor”. But to prevent infinite loops we keep track of the vertices are already discovered and not visit them again.
+
+procedure dfs(vertex v)
+{
+    visit(v);
+    for each neighbor u of v
+    if u is undiscovered
+    call dfs(u);
+}
+
+Output: 
+
+1 2 3 4 5 6 7 8 9 10 11 12
+
+ 
+
+Time complexity of DFS traversal is O(n + m) where n is number of vertices and e is number of edges in the graph. Please note that O(m) may vary between O(1) and O(n2), depending on how dense the graph is.
+
+Applications of DFS –
+
+Finding connected components in a graph
+Topological sorting in a DAG(Directed Acyclic Graph)
+Finding 2-(edge or vertex)-connected components.
+Finding 3-(edge or vertex)-connected components.
+Finding the bridges of a graph.
+Finding strongly connected components.
+Solving puzzles with only one solution, such as mazes.
+Finding biconnectivity in graphs and many more..
+Non-Recursive implementation of DFS
+
+The non-recursive implementation of DFS is similar to the non-recursive implementation of BFS, but differs from it in two ways:
+
+It uses a stack instead of a queue
+The DFS should mark discovered only after popping the vertex not before pushing it.
+It uses reverse iterator instead of iterator to produce same results as recursive DFS.
+
+Output: 
+
+1 2 3 4 5 6 7 8 9 10 11 12

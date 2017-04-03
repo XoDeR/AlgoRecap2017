@@ -1,0 +1,25 @@
+Union-Find Algorithm for Cycle Detection in undirected graph
+Given an connected undirected graph, find if it contains any cycle or not.
+
+For example, 
+Below graph contains a cycle 8-9-11-12-8
+  cycle-depth-first-tree
+
+Prerequisites: Disjoint-Set Data Structure (Union-Find Algorithm)
+
+We strongly recommend to go through above post to get an understanding on how Union-Find algorithm works. You can also watch first 10 mins of this video to get a clear picture
+
+Complete Algorithm:
+
+
+1. Create a disjoint sets for each vertex of the graph.
+2. For every edge u, v in the graph
+   i) Find root of the sets to which elements u and v belongs
+   ii) If both u and v have same root in disjoint sets,
+       a cycle is found.
+	   
+Output: 
+
+Cycle Found
+
+Time complexity of Union and Find operation is O(N) in worst case. Please refer implementation of Find and Union discussed in original post for improving overall time complexity of the algorithm.

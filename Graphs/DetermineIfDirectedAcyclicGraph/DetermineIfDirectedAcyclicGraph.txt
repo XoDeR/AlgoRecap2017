@@ -1,0 +1,30 @@
+Check if given digraph is a DAG (Directed Acyclic Graph) or not
+Given an directed graph, check if it is a DAG (Directed Acyclic Graph) or not. A DAG is a digraph (directed graph) that contains no cycles.
+
+ 
+
+Below graph contains a cycle A-B-D-A, so it is not DAG. If we remove edge 3-0 from it, it will become a DAG.
+
+back-edge-in-directed-graph
+
+Recommended Read –
+Types of edges involved in DFS and relation between them
+Arrival and Departure Time of Vertices in DFS
+ 
+
+ 
+We can use DFS to solve this problem. The idea is to find if any back-edge is present in the graph or not. A digraph is a DAG if there is no back-edge present in the graph. Recall that a back-edge is an edge from a vertex to one of its ancestors in the DFS tree.
+Fact: For an edge u -> v in an directed graph, an edge is a back edge if departure[u] < departure[v]. Proof: We have already discussed about the relationship between all four types of edges involved in the DFS in previous post. Below are the relation we have seen between the departure time for different types of edges involved in a DFS of directed graph –
+
+Tree edge (u, v): departure[u] > departure[v]
+Back edge (u, v): departure[u] < departure[v]
+Forward edge (u, v): departure[u] > departure[v]
+Cross edge (u, v): departure[u] > departure[v]
+
+If we note that for tree edge, forward edge and cross edge, departure[u] > departure[v]. But only for back edge the relationship departure[u] < departure[v] is true. So it is guaranteed that an edge (u, v) is a back-edge, not some other edge if departure[u] < departure[v].     Types of edges involved in DFS and relation between them
+
+Output: 
+
+Graph is not DAG
+
+Time complexity of above solutions is O(n + m) where n is number of vertices and e is number of edges in the graph.
