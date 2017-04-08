@@ -1,0 +1,40 @@
+Longest even length palidromic sum substring
+Find the length of longest contiguous substring of a string, such that the length of the substring is 2*N digits and the sum of the leftmost N digits is equal to the sum of the rightmost N digits. If there is no such substring, return 0.
+
+
+For example,
+Input:  13267224
+
+Longest length of palindromic sum substring is 6
+326722 = (3 + 2 + 6) = (7 + 2 + 2) = 11
+
+ 
+
+Input:  546374
+
+Longest length of palindromic sum substring is 4
+4637 = (4 + 6) = (3 + 7) = 10
+
+ 
+
+ 
+The idea is to consider every even length substring present in the string and calculate sum of digits of their left and right half. Finally we return the maximum length among length of all substrings that have equal sum in left and right half. To calculate the sum of left and right half in constant time we maintain a sum array.
+
+Output: 
+
+Longest length of palindromic sum substring is 6
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(n).
+ 
+
+Can we do it using constant space?
+ 
+We know that an even length palindrome will have two middle points. The idea is to consider every adjacent pair of digits in the string as mid points and expand in both directions to find maximum length palindrome. The idea is inspired from Longest Palindromic Substring problem.
+
+Output: 
+
+Longest length of palindromic sum substring is 4
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(1).
