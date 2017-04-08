@@ -1,0 +1,29 @@
+Find all possible combinations by replacing given digits with characters of the corresponding list
+Given N lists of characters and a number whose digits lies between [1-N], print all possible combinations by replacing its digits with characters of the corresponding list. If any digit of the number gets repeated, it should be replaced by same character considered in its previous occurrence.
+
+
+For example,
+Input:  
+
+list[1] -> { ‘A’, ‘B’, ‘C’, ‘D’}
+list[2] -> { ‘E’, ‘F’, ‘G’, ‘H’, ‘I’, ‘J’, ‘K’ }
+list[3] -> { ‘L’, ‘M’, ‘N’, ‘O’, ‘P’, ‘Q’ }
+list[4] -> { ‘R’, ‘S’, ‘T’}
+list[5] -> { ‘U’, ‘V’, ‘W’, ‘X’, ‘Y’, ‘Z’ }
+
+key = 131
+
+
+Output: 
+ALA AMA ANA AOA APA AQA BLB BMB BNB BOB BPB BQB
+CLC CMC CNC COC CPC CQC DLD DMD DND DOD DPD DQD
+
+We can use recursion to solve this problem. The idea is to consider every digit of given key one by one and for every digit there are two possibilities –
+
+If digit is seen for the first time, we replace the digit with each character in the corresponding list and recuse for the next digit.
+If digit is seen before, we replace it with same character used in the previous occurrence.
+To store the mapping of digits to characters of list, we use a map. If we have processed every digit of key, we print the modified key.
+
+Output: 
+
+ALA AMA ANA AOA APA AQA BLB BMB BNB BOB BPB BQB CLC CMC CNC COC CPC CQC DLD DMD DND DOD DPD DQD

@@ -1,0 +1,30 @@
+Find first k non-repeating characters in a string in single traversal
+Given a string, find first K non-repeating characters in it by doing only single traversal of it.
+
+For example, if the string is ABCDBAGHCHFAC and K = 3, output would be D G F
+ 
+
+ 
+
+A simple solution would be to store count of each character in a map or an array by traversing it once. Then we traverse the string once more to find the first k characters having their count as 1.
+The time complexity of this solution is O(n) and auxiliary space used is O(n). The problem in this solution is that we are traversing the string twice and it violates the program constraints.
+ 
+
+We can solve this problem in single traversal of the string. The idea is to use a map to store each distinct character count and the index of its first or last occurrence in the string. Then we traverse the map and push index of all characters having count 1 into the min-heap. Finally we pop top k keys from the min-heap and that will be our first k non-repeating characters in the string.
+
+Note that in this solution we are doing one complete traversal of the string and the map. Since the size of the map is equal to alphabet size in worst-case (which is a constant), it can be ignored.
+
+ Output: 
+
+D G F
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
+ 
+
+Above solution inserts all characters of the map (all having count of 1) into the min-heap. So the heap size becomes O(n) in the worst case. We can reduce the heap size to O(k) in worst case. The idea is to push only first k characters into the min-heap and then for all subsequent elements in the map, if current element is less than the root of the heap, we replace the root with it. After we have processed every key of the map, the heap will contain first k non-repeating characters.
+(Here by character we mean index of a character ?? )
+
+Output: 
+
+D G F

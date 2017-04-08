@@ -1,0 +1,25 @@
+Longest Palindromic Substring (Non-DP Space Optimized Solution)
+Given a string, find maximum-length contiguous substring of it that is also a palindrome. For example, the longest palindromic substring of “bananas” is “anana”.
+
+
+ 
+
+For example,
+Longest Palindromic Substring of ABDCBCDBDCBBC is BDCBCDB
+
+ 
+Note that the longest palindromic substring is not guaranteed to be unique. For example, in the string “abracadabra”, there is no palindromic substring with length greater than three, but there are two palindromic substrings with length three, namely, “aca” and “ada”. If multiple longest palindromic substring exists, return any one of them.
+
+ 
+
+ 
+We have discussed Dynamic Programming solution to solve this problem that takes O(n2) time and O(n2) space. In this post, we will discuss another approach to solve this problem that doesn’t require any extra space.
+
+The idea is very simple and effective. For each character in the given string, we consider it as mid point of a palindrome and expand in both directions to find maximum length palindrome. For even length palindrome, we consider every adjacent pair of characters as mid point.
+
+Output: 
+
+Longest Palindromic Substring of ABDCBCDBDCBBC is BDCBCDB
+
+ 
+The time complexity of above solution is O(n2) and auxiliary space used by the program is O(1). Note that O(n) solution is also possible for this problem. We can achieve linear complexity by using Manacher’s algorithm. 

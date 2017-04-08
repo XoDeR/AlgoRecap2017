@@ -1,0 +1,41 @@
+Find all interleavings of given strings
+Find all interleavings of given strings that can be formed from all the characters of first and second string where order of characters is preserved.
+
+
+ 
+For example, Interleaving of string ABC and ACB are
+
+ACBABC
+AABCBC
+ACABCB
+ABCACB
+AACBBC
+ABACCB
+ACABBC
+ABACBC
+AACBCB
+AABCCB
+
+We can easily solve this problem using recursion. The idea is to append first or last character of X and Y in the result one by one and recuse for remaining substring.
+
+
+Input: X[1..m], Y[1..n]
+
+fun(X, m, Y, n) = fun(X, m-1, Y, n) + X[m]
+                  fun(X, m, Y, n-1) + Y[n]
+
+fun(X, 0, Y, n) = Y[n]    // X is empty
+fun(X, m, Y, 0) = X[m]    // Y is empty
+
+Output: 
+
+ACBABC
+AABCBC
+ACABCB
+ABCACB
+AACBBC
+ABACCB
+ACABBC
+ABACBC
+AACBCB
+AABCCB

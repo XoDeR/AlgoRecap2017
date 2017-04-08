@@ -1,0 +1,24 @@
+Convert number into corresponding excel column name
+Given a positive number, convert the number into corresponding excel column name.
+
+
+ 
+For example, below image shows numbers corresponding to excel columns.
+ 
+
+excel column number to name
+
+The main trick in the problem lies in the handling the boundary cases like number 26 corresponds to ‘Z’ and 27 corresponds to ‘AA’. Similarly, number 1014 corresponds to ‘ALZ’ and 1015 corresponds to ‘AMA’. Below is the short piece of code that handle all these cases beautifully.
+
+Output: 
+
+164 – FH
+214 – HF
+88 – CJ
+833 – AFA
+296 – KJ
+808 – AEB
+643 – XS
+645 – XU
+154 – EX
+850 – AFR

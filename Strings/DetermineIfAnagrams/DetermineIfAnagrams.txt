@@ -1,0 +1,48 @@
+Determine if two strings are anagram or not
+Given two strings, determine if they are anagrams or not.
+
+ 
+
+Any word that exactly reproduces the letters in another order is an anagramap. In other words, X and Y are anagrams if by rearranging the letters of X, we can get Y using all the original letters of X exactly once.
+
+For example, all these pairs are anagrams as lhs can be rearranged to rhs and vice-versa –
+
+silent = listen
+Tom Marvolo Riddle = I am Lord Voldemort
+William Shakespeare = I am a weakish speller
+incest = insect
+
+ 
+
+ 
+Approach 1 –
+
+A simple solution would be to sort given strings. If the strings become equal after sorting, they are anagrams. The time complexity of above solution is O(nlog(n)).
+
+ 
+
+Approach 2 –
+
+We can also solve this problem in O(n) time. The idea is to maintain frequency of each character of first string in a map or a count array. Then for each character of the second string, we decrement its frequency and return false if the frequency becomes negative or the character is not present in the map.
+
+Output: 
+
+Anagram
+
+ 
+The time complexity of above solution is O(n) assuming constant time operation for std::unordered_map. The auxiliary space used by the program is O(n).
+
+ 
+
+ 
+Approach 3 –
+
+Another simple solution would be to create two maps and store frequency of each character of first and second string in them. Then we can simply check if both maps are equal or not. If both are found to be equal, then both strings are anagram.
+
+Output: 
+
+Anagram
+
+ 
+
+The time complexity of above solution is O(n) assuming constant time operation for std::unordered_map. The auxiliary space used by the program is O(n).

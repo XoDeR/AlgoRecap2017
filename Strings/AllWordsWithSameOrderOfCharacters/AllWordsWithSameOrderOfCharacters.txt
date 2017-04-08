@@ -1,0 +1,53 @@
+Find all words from given list that follows same order of characters as given pattern
+Given a list of words and a pattern, find all words in the list that follows same order of characters as that of given pattern.
+
+ 
+
+For example,
+
+list[] = [leet, abcd, loot, geek, cool, for, peer,
+         dear, seed, meet, noon, otto, mess, loss]
+
+pattern = moon (pattern is 4 digit and has distinct character at first and
+               last index and same character at 1st and 2nd index)
+
+Output: [leet, loot, geek, cool, peer, seed, meet]
+ 
+ 
+
+list[] = [leet, abcd, loot, geek, cool, for, peer,
+         dear, seed, meet, noon, otto, mess, loss]
+
+pattern = pqrs (pattern is 4 digit and has all distinct characters)
+
+Output: [abcd, dear]
+
+ 
+
+ 
+We can use Hashing to solve this problem. The idea is to use map and associate each distinct character in the given word with corresponding character in the pattern and store that information in the map. Now for each character in both word and the pattern, if the character is seen before, it should only be mapped to corresponding character in the pattern. Note that we also have to associate each character in the given pattern with corresponding character in the given word and follow the same process.
+
+Let’s understand this by taking an example. Consider word ‘moon’ and the pattern ‘noon’, We will process each character in both word and pattern. Let’s check for mapping from given word to given pattern
+
+(m, n) -> As ‘m’ is seen for the first time, we map ‘m’ to ‘n’
+(o, o) -> As ‘o’ is seen for the first time, we map ‘o’ to ‘o’
+(o, o) -> As ‘o’ is seen before and it is already mapped to ‘o’ which is same as current
+                      character in pattern ‘o’
+(n, n) -> As ‘n’ is seen for the first time, we map ‘n’ to ‘n’
+ 
+
+So mapping from given word to given pattern is good. Now let’s check mapping from given pattern to given word.
+
+(n, m) -> As ‘n’ is seen for the first time, we map ‘n’ to ‘m’
+(o, o) -> As ‘o’ is seen for the first time, we map ‘o’ to ‘o’
+(o, o) -> As ‘o’ is seen before and it is already mapped to ‘o’ which is same as current
+                      character in pattern ‘o’
+(n, n) -> As ‘n’ is seen before and it is already mapped to ‘m’ which is different from the
+                      current character in pattern ‘n’.
+ 
+
+So mapping from given pattern to given word fails and we can say that the pattern don’t matches the word.
+
+Output:
+
+leet loot geek cool peer seed meet

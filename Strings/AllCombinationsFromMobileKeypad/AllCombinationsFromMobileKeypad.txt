@@ -1,0 +1,30 @@
+Find all possible combinations of words formed from mobile keypad
+Given a sequence of numbers between [2-9], print all possible combinations of words formed from mobile keypad have some digits associated with each key.
+
+ 
+
+  keypad
+ 
+
+Input: [2, 3, 4]
+
+Output: 
+ADG BDG CDG AEG BEG CEG AFG BFG CFG ADH BDH CDH AEH BEH
+CEH AFH BFH CFH ADI BDI CDI AEI BEI CEI AFI BFI CFI
+
+ 
+We can use recursion to solve this problem. The idea is to consider every input digit one by one, replace the digit with each character in the mobile keypad and recuse for the next digit. When all the digit are processed, we print the result.
+
+Output: 
+
+ADG BDG CDG AEG BEG CEG AFG BFG CFG ADH BDH CDH AEH BEH CEH AFH BFH CFH ADI BDI CDI AEI BEI CEI AFI BFI CFI
+
+ 
+
+Iterative implementation –
+
+We can also solve this problem iteratively using a vector. The idea remains the same but instead of recusing, we push the partial-word into the vector. For each character associated with current digit in the keypad, we append the character to each word in the output list and push the result to the vector. So at the end of each iteration, vector contains all possible combinations of words till current digit. We repeat this process until all digits are processed.
+
+Output: 
+
+ADG BDG CDG AEG BEG CEG AFG BFG CFG ADH BDH CDH AEH BEH CEH AFH BFH CFH ADI BDI CDI AEI BEI CEI AFI BFI CFI

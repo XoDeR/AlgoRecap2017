@@ -1,0 +1,24 @@
+Isomorphic Strings
+Given two strings, determine if they are isomorphic.
+
+Two strings X and Y are called isomorphic if all occurrences of each character in X can be replaced with another character to get Y and vice-versa.
+
+For example,
+
+Consider the strings “ACAB” and “XCXY”. They are isomorphic as we can map ‘A’ -> ‘X’, ‘B’ -> ‘Y’ and ‘C’ -> ‘C’.
+ 
+
+Note that mapping from a character to itself is allowed but no two characters may be replaced by the same character.
+
+ 
+
+ 
+Naive solution would be to check if every character in the first string is mapped to same character in the second string for all its occurrences. But even then two characters in first string might still be mapped to the same character in second string. So we have to repeat the process for second string as well. i.e. check if every character in second string is mapped to same character in first string for all its occurrences.
+
+The time complexity of above solution is O(n2). We can improve time complexity to linear by using O(n) space.
+
+The idea is to use Hashing. In the solution below, we use a map to store mapping from characters of string X to string Y and a set to store already mapped characters of string Y, rest of the code is pretty much straightforward.
+
+Output: 
+
+ACAB and XCXY are Isomorphic

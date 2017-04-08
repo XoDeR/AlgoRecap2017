@@ -1,0 +1,29 @@
+Check if repeated subsequence is present in the string or not
+Given a string, check if repeated subsequence is present in the string or not. The repeated “subsequence” (not “substring”) should have length of 2 or more.
+
+
+ 
+
+For example,
+
+String XYBAXB has XB(XBXB) as repeated sub-sequence
+
+String XBXAXB has XX(XXX) as repeated sub-sequence
+
+String ABCA don’t have any repeated sub-sequence
+
+String XYBYAXBY has XB(XBXB), XY(XYXY), YY(YYY), YB(YBYB) and YBY(YBYBY) as repeated subsequences
+
+ 
+
+ 
+The idea is very simple. If we discard all non-repeating elements from the string (having frequency of 1) and the resulting string is non-Palindrome, then the string contains a repeated subsequence. If the resulting string is a palindrome and don’t have any character with frequency 3 or more, the string cannot have repeated subsequence.
+
+Output: 
+
+Repeated Subsequence present
+
+ 
+The time complexity of above solution is O(n) where n is the length of the input string.
+ 
+The problem can also be solved using Dynamic programming. It is nothing but variation of Longest Common Subsequence(LCS) problem. But the time complexity of DP solution is O(n2).
