@@ -1,0 +1,69 @@
+Find a duplicate element in a limited range array
+Given a limited range array of size n where array contains elements between 1 to n-1 with one element repeating, find the duplicate number in it.
+
+ 
+
+
+For example,
+
+Input:  { 1, 2, 3, 4, 4 }
+Output: The duplicate element is 4
+ 
+
+Input:  { 1, 2, 3, 4, 2 }
+Output: The duplicate element is 2
+
+ 
+
+ 
+Approach 1: (Hashing)
+
+The idea is to use hashing to solve this problem. We can use a visited boolean array to mark if an element is seen before or not. If the element is already encountered before, the visited array will return true.
+
+Output: 
+
+Duplicate element is 4
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
+ 
+ 
+Approach 2:
+
+We can solve this problem in constant space. Since the array contains all distinct elements except one and all elements lies in range 1 to n-1, we can check for duplicate element by marking array elements as negative by using array index as a key. For each array element arr[i], we get absolute value of the element abs(arr[i]) and invert the sign of element present at index abs(arr[i])-1. Finally, we traverse array once again and if a positive number is found at index i, then the duplicate element is i+1.
+
+Above approach takes two traversals of the array. We can achieve the same in only one traversal. For each array element arr[i], we get absolute value of the element abs(arr[i]) and invert the sign of element present at index abs(arr[i])-1 if it is positive else if element is already negative, then it is a duplicate.
+
+Output: 
+
+Duplicate element is 2
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+ 
+
+ 
+Approach 3: (using XOR)
+
+We can also solve this problem by taking XOR of all array elements with numbers from 1 to n-1. Since same elements will cancel out each other as a^a = 0, 0^0 = 0 and a^0 = a, we will be left with the duplicate element.
+
+Output: 
+
+Duplicate element is 2
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+ 
+
+ 
+Approach 4:
+
+Finally, the post is incomplete without this textbook solution: find sum of all element and find difference between it and all elements which are supposed to be there. Thanks to MiiNiPaa for suggesting this method.
+
+Output: 
+
+The duplicate element is 4
+The duplicate element is 2
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).

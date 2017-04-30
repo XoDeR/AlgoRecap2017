@@ -1,0 +1,66 @@
+Find all distinct combinations of given length
+Given an array of integers, find all distinct combinations of given length.
+
+
+For example,
+
+Input:  {1, 2, 3}, k = 2
+Output: {1, 2}, {1, 3}, {2, 3}
+ 
+
+Input:  {1, 2, 1}, k = 2
+Output: {1, 1}, {1, 2}
+
+ 
+
+The program should print only distinct combinations. For example, for above input, either {1, 2} or {2, 1} should be considered.
+ 
+
+ 
+Approach 1:
+
+ 
+
+We can use recursion to solve this problem. The idea is to add each element in the output and recurse for remaining elements with one less element. To avoid printing permutations, each combination will be constructed in same order as array elements. If combination of given size is found, we print it. Below solution generates all combinations by using above logic by traversing the array from left to right. To print only distinct combinations in case input contains repeated elements, we can sort the array and exclude all adjacent duplicate elements from the array.
+
+Output: 
+
+1 2
+1 3
+2 3
+
+We can also process the elements of the array from right to left. The idea is illustrated below –
+
+Output: 
+
+2 3
+1 3
+1 2
+
+ 
+
+ 
+Approach 2:
+
+ 
+The problem is very similar to 0/1 knapsack problem where for each element in given array, we have two cases –
+
+1. Consider that element
+2. Don’t consider that element
+
+In the solution below, we generate all combinations by using above logic by traversing the array from left to right. If combination of given size is found, we print it. To avoid printing permutations, each combination will be constructed in same order as array elements. To print only distinct combinations (when input contains repeated elements), we can sort the array and exclude all adjacent duplicate elements from the array along with the current element in case 2.
+
+Output: 
+
+1 2
+1 3
+2 3
+
+ 
+We can also process the elements of the array from right to left. The idea is illustrated below –
+
+Output: 
+
+3 2
+3 1
+2 1

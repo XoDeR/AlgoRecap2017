@@ -1,0 +1,55 @@
+Find index of 0 to be replaced to get maximum length sequence of continuous ones
+Given a binary array, find the index of 0 to be replaced with 1 to get maximum length sequence of continuous ones.
+
+For example,
+
+Consider array { 0, 0, 1, 0, 1, 1, 1, 0, 1, 1 }
+
+The index to be replaced is 7 to get continuous sequence of length 6 containing all 1’s.
+
+ 
+Approach 1:
+
+ 
+
+We can efficiently solve this problem in linear time and constant space. The idea is to traverse the given array and maintain index of previous zero encountered. Then for each subsequent zeroes, we can easily find out number of 1’s between current zero and last zero. For every element we check if maximum sequence of continuous 1’s ending at that element (including last zero which is now replaced by 1) exceeds maximum sequence found so far. If yes, we update the maximum sequence to current sequence length and index of optimal zero to index of last zero encountered.
+
+Output: 
+
+Index to be replaced is 7
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+ 
+ 
+Approach 2:
+
+ 
+
+The idea is very simple. We update each non-zero element of array with count of its adjacent consecutive 1’s. For example, array { 0, 0, 1, 0, 1, 1, 1, 0, 1, 1 } is converted to { 0, 0, 1, 0, 3, 3, 3, 0, 2, 2 }. Now the problem reduces to finding the index of 0 whose sum of left and right element is maximum.
+
+Note that this approach will modify the array and at-least requires two traversals of the array. We can use an auxiliary array to avoid modification of original array or restore the original array before returning.
+
+Output: 
+
+Index to be replaced is 7
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+
+
+ 
+Approach 3: (Using sliding window)
+
+
+We can solve this problem by using sliding window technique. The idea is to maintain a window containing at-most one zero at any point. We add elements to the window from right until it becomes unstable. The window becomes unstable if number of zeros in it becomes 2 and we remove elements from its left side till it becomes stable again (by removing leftmost zero). If the window is stable and current window length is more than maximum window found so far, we update the index of 0 to be replaced.
+
+Output: 
+
+Index to be replaced is 7
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+
+ 
+

@@ -1,0 +1,41 @@
+Replace each element of the array with product of every other element without using division operator
+Given an array of integers, replace each element of the array with product of every other element in the array without using division operator.
+
+ 
+
+
+For example,
+
+Input:  { 1, 2, 3, 4, 5 }
+Output: { 120, 60, 40, 30, 24 }
+ 
+
+Input:  { 5, 3, 4, 2, 6, 8 }
+Output: { 1152, 1920, 1440, 2880, 960, 720 }
+
+ 
+
+ 
+Naive approach would be to calculate product of all elements in the left sub-array and right sub-array for each element of the array. The time complexity of above solution is O(n2).
+
+ 
+
+We can solve this problem in linear time by using two auxiliary arrays left[] and right[] where left[i] stores the product of all elements in the sub-array A[0..i-1] and right[i] stores the product of all elements in sub-array A[i+1..n-1]. Now for each element A[i], we simply replace it with product of its left-subarray and right-subarray (i.e. A[i] = left[i] * right[i]).
+
+Output: 
+
+1152 1920 1440 2880 960 720
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
+ 
+
+ 
+We can use recursion to solve this problem in linear time and constant space. The idea is to recursively calculate the product of all elements in the right sub-array and pass left-subarray product in function arguments.
+
+Output: 
+
+1152 1920 1440 2880 960 720
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1) (if we ignore recursion stack space, no auxiliary space is used).

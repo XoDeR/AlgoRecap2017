@@ -1,0 +1,28 @@
+Shuffle a given array of elements (Fisher–Yates shuffle)
+Given an array of integers, in-place shuffle it. The algorithm should produce an unbiased permutation i.e. every permutation is equally likely.
+
+ 
+
+ 
+Fisher–Yates shuffle is used to generate random permutations. It takes time proportional to the number of items being shuffled and shuffles them in place. Below is complete algorithm –
+
+— To shuffle an array a of n elements :
+for i from n-1 downto 1 do
+    j = random integer such that 0 <= j <= i
+    exchange a[j] and a[i]
+	
+	Output: 4 6 1 2 5 3 (Random)
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+ 
+ 
+An equivalent version which shuffles the array in the opposite direction (from lowest index to highest) is:
+
+— To shuffle an array a of n elements :
+for i from 0 to n-2 do
+    j = random integer such that i <= j < n
+    exchange a[i] and a[j]
+	
+Output: 3 6 5 4 1 2 (Random)
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).

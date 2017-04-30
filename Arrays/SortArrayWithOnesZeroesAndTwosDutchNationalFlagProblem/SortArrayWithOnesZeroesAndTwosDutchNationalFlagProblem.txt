@@ -1,0 +1,31 @@
+Sort an array containing 0’s, 1’s and 2’s (Dutch national flag problem)
+Given an array containing only 0’s, 1’s and 2’s, sort the array in linear time and using constant space.
+
+ 
+
+
+For example,
+
+Input:  { 0, 1, 2, 2, 1, 0, 0, 2, 0, 1, 1, 0 }
+Output: { 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2 }
+
+ 
+
+ 
+Simple solution would be to perform count sort. We count the number of 0’s, 1’s and 2’s and then put them in the array in their correct order. The time complexity of above solution is O(n) but it requires two traversal of the array.
+
+ 
+
+We can rearrange the array in single traversal using an alternative linear-time partition routine can be used that separates the values into three groups:
+
+values less than the pivot
+values equal to the pivot and
+values greater than the pivot.
+To solve this particular problem, we consider 1 as a pivot. Below linear-time partition routine is similar to three-way Partitioning for Dutch national flag problem.
+
+Output: 
+
+0 0 0 0 0 1 1 1 1 2 2 2
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).

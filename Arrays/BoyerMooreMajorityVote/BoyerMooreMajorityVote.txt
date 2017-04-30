@@ -1,0 +1,75 @@
+Find majority element in an array (Boyer–Moore majority vote algorithm)
+Given an array of integers containing duplicates, return the majority element in an array if present. A majority element appears more than n/2 times where n is the size of the array.
+
+ 
+
+For example,
+
+int majorityElementNaive(int A[], int n)
+{
+    // check if A[i] is majority element or not
+    for (int i = 0; i <= n/2; i++)
+    {
+        int count = 1;
+        for (int j = i + 1; j < n; j++)
+            if (A[j] == A[i])
+                count++;
+ 
+        if (count > n/2)
+            return A[i];
+    }
+ 
+    return -1;
+}
+
+Input: { 2, 8, 7, 2, 2, 5, 2, 3, 1, 2, 2 }
+Majority element is 2
+
+ 
+
+ 
+Naive solution would be to count frequency of each element present in the first half of the array to check if it is majority element or not. Below is the naive implementation –
+
+The time complexity of above solution is O(n2).
+ 
+
+We can improve worst case time complexity to O(nlogn) by sorting the array and then perform binary search for first and last occurrence of each element. If difference between first and last occurrence is more than n/2, we have found majority element.
+
+ 
+
+ 
+O(n) solution –
+
+We can use hashing to solve this problem in linear time. The idea is to store each element’s frequency in a map and return the element if its frequency becomes more than n/2. If no such element is present, then majority element does not exists in the array and we return -1.
+
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
+
+ 
+
+ 
+Boyer–Moore majority vote algorithm –
+
+We can find the majority element using linear time and constant space using Boyer–Moore majority vote algorithm. The algorithm can be expressed in pseudocode as the following steps:
+
+
+Initialize an element m and a counter i = 0
+
+for each element x of the input sequence:
+    if i = 0, then
+        assign m = x and i = 1
+    else
+        if m = x, then assign i = i + 1
+    else
+        assign i = i – 1
+
+return m
+
+The algorithm processes the each element of the sequence, one at a time. When processing an element x,
+
+If the counter is 0, we set the current candidate to x and we set the counter to 1.
+If the counter is not 0, we increment or decrement the counter according to whether x is the current candidate.
+At the end of this process, if the sequence has a majority, it will be the element stored by the algorithm. If there is no majority element, the algorithm will not detect that fact, and will still output one of the elements. We can modify the algorithm to verify that the element found is really is a majority element or not.
+
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+
+ 

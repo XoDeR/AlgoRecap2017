@@ -1,0 +1,31 @@
+Find maximum length sub-array having equal number of 0’s and 1’s
+Given an binary array containing 0 and 1, find maximum length sub-array having equal number of 0’s and 1’s.
+
+ 
+
+
+For example,
+
+Input:  { 0, 0, 1, 0, 1, 0, 0 }
+
+Output: Largest subarray is { 0, 1, 0, 1 } or { 1, 0, 1, 0}
+
+ 
+
+ 
+Naive solution would be to consider all sub-arrays and for each sub-array, we count total number of 0’s and 1’s present. If sub-array contains equal number of 0’s and 1’s, we update maximum length sub-array if required. The time complexity of naive solution is O(n3) as there are n2 sub-arrays and it takes O(n) time to find count 0’s and 1’s. The method can be optimized to run in O(n2) time by calculating count of 0’s and 1’s in constant time.
+
+ 
+
+We can use map to solve this problem in linear time. The idea is to replace 0 with -1 and find out the largest subarray with 0 sum. To find largest subarray with 0 sum, we create an empty map which stores the ending index of first sub-array having given sum. We traverse the given array, and maintain sum of elements seen so far.
+
+If sum is seen for first time, insert the sum with its index into the map.
+ 
+If sum is seen before, there exists a sub-array with 0 sum which ends at current index and we update maximum length sub-array if current sub-array has more length.
+
+Output: 
+
+[1, 4]
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).

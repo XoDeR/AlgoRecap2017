@@ -1,0 +1,45 @@
+Find all distinct combinations of given length with repetition allowed
+Given an array of integers, find all distinct combinations of given length where repetition of elements is allowed.
+
+ 
+
+
+For example,
+
+Input:  {1, 2, 3}
+Output: {1, 1}, {1, 2}, {1, 3}, {2, 2}, {2, 3}, {3, 3}
+ 
+
+Input:  {1, 2, 3, 4}
+Output: {1, 1}, {1, 2}, {1, 3}, {1, 4}, {2, 2}, {2, 3}, {2, 4}, {3, 3}, {3, 4}, {4, 4}
+ 
+
+Input:  {1, 2, 1}
+Output: {1, 1}, {1, 2}, {2, 2}
+
+ 
+The program should print only distinct combinations.
+For example, for last input, either {1, 2} or {2, 1} should be considered.
+ 
+
+ 
+We can use recursion to solve this problem. The idea is to add each element of the array in the output starting from last element considered and recurse for remaining elements. To avoid printing permutations, each combination will be constructed in same order as array elements. If combination of given size is found, we print it.
+
+Output: 
+
+1 1
+1 2
+1 1
+2 2
+2 1
+1 1
+
+ 
+
+If array contains repeated elements, above code will print duplicate combinations. To print only distinct combinations in case input contains repeated elements, the idea is to sort the array and recuse for only one occurrence of adjacent duplicate elements.
+
+Output: 
+
+1 1
+1 2
+2 2
