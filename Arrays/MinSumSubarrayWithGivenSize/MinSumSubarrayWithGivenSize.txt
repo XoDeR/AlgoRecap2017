@@ -1,0 +1,24 @@
+Find minimum sum subarray of given size k
+Given an array of integers, find minimum sum sub-array of given size k.
+
+ 
+
+
+For example,
+
+Input:  {10, 4, 2, 5, 6, 3, 8, 1}, k = 3
+
+Output: Minimum sum sub-array of size 3 is (1, 3)
+
+ 
+
+ 
+We can solve this problem by using sliding window technique. The idea is to maintain a window of size k and for every element in the array, we include it in the window and remove leftmost element from the window if window size is more than k. We also maintain sum of elements in current window. If current window sum is more than minimum found so far, we update the minimum sum to current window sum and store window’s end-points.
+
+Output: 
+
+Minimum sum sub-array is (1, 3)
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+ 

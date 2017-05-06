@@ -1,0 +1,54 @@
+Find subarray having given sum in given array of integers
+Given an array of integers, find a sub-array having given sum in it.
+
+ 
+
+
+For example,
+
+Input:  {2, 6, 0, 9, 7, 3, 1, 4, 1, 10}, sum 15
+Output: Subarray {6, 0, 9} exists with sum 15
+ 
+
+Input:  {0, 5, -7, 1, -4, 7, 6, 1, 4, 1, 10}, sum 15
+Output: Subarray {1, -4, 7, 6, 1, 4} exists with sum 15
+ 
+
+Input:  {0, 5, -7, 1, -4, 7, 6, 1, 4, 1, 10}, sum -3
+Output: Subarray {1, -4} exists with sum 15
+ 
+
+Approach 1: (Using Sliding Window)
+
+ 
+
+We can solve this problem by using a sliding window. The idea is to maintain a window that starts from the current element and sum of its elements is more than or equal to the given sum. If current window’s sum becomes less than the given sum, then the windows is unstable and we keep on adding elements to the current window from its right till the window becomes stable again. We print the window if it’s sum is equal to the given sum at any point of time.
+
+Output: 
+
+Subarray found [1-3]
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
+ 
+
+Approach 2: (Using Hashing)
+
+ 
+
+Above solution will fail for negative numbers. We can use hashing to check if sub-array with given sum exists in the array or not. The idea is to traverse the given array and maintain sum of elements seen so far. If the difference of current sum and given sum is seen before (i.e. the difference exists in the set), we return true as there exists at-least one sub-array with given sum which ends at current index else we insert the sum into the set.
+
+Output: 
+
+Sub-array with given sum exists
+
+ 
+
+We can also print the subarray using Hashing. The idea is to use map instead of set that stores the ending index of sub-array along with its sum.
+
+Output: 
+
+Sub-array found [3-8]
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
