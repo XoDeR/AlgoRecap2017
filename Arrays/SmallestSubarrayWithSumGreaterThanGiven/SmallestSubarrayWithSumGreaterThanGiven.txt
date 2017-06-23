@@ -1,0 +1,37 @@
+Find the length of smallest subarray whose sum of elements is greater than the given number
+Given an array of integers, find the length of smallest subarray whose sum of elements is greater than the given positive number.
+
+ 
+
+
+For example,
+
+Input:  {1, 2, 3, 4, 5, 6, 7, 8}, k = 20
+Output: {6, 7, 8}
+ 
+
+Input:  {1, 2, 3, 4, 5, 6, 7, 8}, k = 7
+Output: {8}
+ 
+
+Input:  {1, 2, 3, 4, 5, 6, 7, 8}, k = 21
+Output: {5, 6, 7, 8}
+ 
+
+Input:  {1, 2, 3, 4, 5, 6, 7, 8}, k = 40
+Output: No sub-array exists
+
+ 
+
+Note that we don’t have to print the sub-array but return its length.
+ 
+
+ 
+We can solve this problem by using a sliding window. The idea is to maintain a window that ends at the current element and sum of its elements is less than or equal to the given sum. If current window’s sum becomes more than the given sum at any point of time, then the window is unstable and continue removing elements from the window’ left till it becomes stable again. We also update the result if unstable window’s length is less than minimum found so far.
+
+Output: 
+
+Smallest sub-array length is 4
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).
