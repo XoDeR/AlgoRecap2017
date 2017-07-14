@@ -1,0 +1,29 @@
+We have introduced heap data structure in previous post and discussed heapify-up, push, heapify-down and pop operations in detail. In this post, Max and Min heap implementation is provided. Their implementation is somewhat similar to std::priority_queue.
+
+Output: 
+
+Size is 3
+15 3
+Size is 4
+45 5 4 2
+true
+Vector::at() : index is out of range(Heap underflow)
+Vector::at() : index is out of range(Heap underflow)
+
+ 
+
+Min Heap C++ Implementation –
+
+The Min Heap Implementation is very similar to max heap implementation discussed above. The highlighted portion in the below code marks its differences with max heap implementation.
+
+Output: 
+
+Size is 3
+2 3
+Size is 4
+4 5 15 45
+true
+Vector::at() : index is out of range(Heap underflow)
+Vector::at() : index is out of range(Heap underflow)
+
+Time complexity of push()/pop() operations is O(log(n)) and peek()/size()/empty() operations is O(1).

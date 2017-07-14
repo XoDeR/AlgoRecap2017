@@ -1,0 +1,33 @@
+Given a set S of activities with start time and finish time of each activity, find the maximum number of activities that can be performed by a single person assuming that a person can only work on a single activity at a time.
+
+ 
+
+
+For example,
+
+Input: (1, 4), (3, 5), (0, 6), (5, 7), (3, 8), (5, 9), (6, 10), (8, 11), (8, 12),
+       (2, 13), (12, 14)
+Output: (1 4), (5 7), (8 11), (12 14)
+
+ 
+
+ 
+The activity selection problem is a problem concerning the selection of non-conflicting activities to perform within a given time frame, given a set of activities each marked by a start and finish time. A classic application of this problem is in scheduling a room for multiple competing events, each having its own time requirements (start and end time).
+
+Lets assume there exist n activities with each of them being represented by a start time si and finish time fj. Two activities i and j are said to be non-conflicting if si = fj or sj = fi.
+
+We can solve this problem by being greedy. Using greedy approach will always result in an optimal solution to this problem. We initially sorts the activities in increasing order of their finish times and create a set S to store the selected activities. We initialize the set with the first activity and then from the second activity onward, we include the activity in activities list if start time of the activity is greater or equal to the finish time of the last selected activity. We repeat this for each activity involved.
+
+Output: 
+
+(1 4)
+(5 7)
+(8 11)
+(12 14)
+
+Time complexity of above solution is O(nlogn).
+ 
+
+Weighted Activity Selection Problem –
+
+Weighted Activity Selection Problem is the generalized version of the activity selection problem that involves selecting an optimal set of non-overlapping activities such that the total weight is maximized. Unlike the unweighted version, there is no greedy solution to the weighted activity selection problem. 

@@ -1,0 +1,38 @@
+Given an array of integers, find the maximum sum of subsequence of given array where subsequence contains no adjacent elements.
+
+ 
+
+For example,
+
+Input:  { 1, 2, 9, 4, 5, 0, 4, 11, 6 }
+Output: Maximum sum is 26
+ 
+
+The maximum sum is formed by subsequence {1, 9, 5, 11}
+
+ 
+The problem is similar to 0/1 Knapsack problem where for every item, we have two choices – to include that element in the solution or to exclude that element from solution. We can solve this problem by following the same logic. The only difference is that we include current element only if it is not adjacent to previous element considered.
+
+Output: 
+
+Maximum sum is 26
+
+ 
+We can also solve this problem in bottom-up fashion using Dynamic Programming (Tabulation). In the bottom-up approach, we solve smaller sub-problems first, then solve larger sub-problems from them. The idea is to create an auxiliary array lookup[] to store solution of sub-problems where for each index i, lookup[i] stores the maximum value that can be attained till index i. It uses value of smaller values i already computed. It has the same asymptotic run-time as Memoization but no recursion overhead.
+
+Output: 
+
+Maximum sum is 26
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(n).
+
+ 
+Above solution uses extra space. We can also solve this problem without using any extra space. If we analyze the solution, we can see that maximum sum till any index i can be found by knowing the maximum sum of previous index i-1 and index i-2. So instead of storing the complete array, we can maintain two variables that stores the maximum sum till previous index and previous to previous index.
+
+Output: 
+
+Maximum sum is 26
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).

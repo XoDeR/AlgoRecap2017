@@ -1,0 +1,43 @@
+Given a list containing future prediction of share prices, find maximum profit that can be earned by buying and selling shares any number of times with constraint that a new transaction can only start after previous transaction is complete. i.e. we can only hold at-most one share at a time.
+
+ 
+
+
+For example,
+
+rate[]:  {1, 5, 2, 3, 7, 6, 4, 5}
+
+Total profit earned is 10
+
+Buy on day 1 and sell on day 2
+Buy on day 3 and sell on day 5
+Buy on day 7 and sell on day 8
+
+ 
+
+rate[]: {10, 8, 6, 5, 4, 2}
+
+Total profit earned is 0
+
+ 
+
+ 
+The idea is very simple. We traverse the given list of prices and find local minimum of every increasing sequence. For example, in the array {1, 5, 2, 3, 7, 6, 4, 5}, below are three increasing sequences of length 2 or more.
+
+
+{1, 5}
+{2, 3, 7}
+{4, 5}
+
+The local minimum of each sequence is 1, 2 and 4 respectively. We can gain maximum profit if we buy the shares at the starting of every increasing sequence (local minimum) and sell them at the end of the increasing sequence (local maximum).
+
+Output: 
+
+Buy on day 1 and sell on day 2
+Buy on day 3 and sell on day 5
+Buy on day 7 and sell on day 8
+
+Total profit earned is 10
+
+ 
+The time complexity of above solution is O(n) and auxiliary space used by the program is O(1).

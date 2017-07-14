@@ -1,0 +1,27 @@
+Given a set of intervals, print all non-overlapping intervals after merging overlapping intervals.
+
+ 
+
+
+For example,
+
+Input:  {1, 5}, {2, 3}, {4, 6}, {7, 8}, {8, 10}, {12, 15}
+
+Intervals after merging overlapping intervals are {1, 6}, {7, 10}, {12, 15}.
+ 
+
+ 
+The idea is to sort the intervals in increasing order of their starting time. Then for each interval,
+If stack is empty or top interval in the stack do not overlap with current interval, we push it to the stack.
+ 
+If top interval of stack overlap with current interval, we merge two intervals by updating ending of top interval to ending of current interval.
+Finally, we print all non-overlapping intervals present in the stack.
+
+Output: 
+
+(12, 15)
+(7, 10)
+(1, 6)
+
+ 
+The time complexity of above solution is O(nlogn) and auxiliary space used by the program is O(n).
